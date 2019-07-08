@@ -1,5 +1,8 @@
 /* This file is for your main application scss. */
 
 @import "../css/phoenix.css";
+@import "../scss/base/fonts";
 
-
+body, html {
+    font-family: 'ibm_plex_monoregular', sans-serif;
+}

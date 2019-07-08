@@ -29,3 +29,5 @@ npm-debug.log
 .idea
 .env
 .DS_Store
+node_modules/
+.elixir_ls/

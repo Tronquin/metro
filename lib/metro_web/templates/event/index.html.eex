@@ -17,13 +17,6 @@
   </div>
   <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
   <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
-  <div class="books-carousel">
-  <%= for book <- @books do %>
-  <div class="books">
-    <img src="<%= book.image%>" class="d-block w-100">
-  </div>
-  <% end %>
-  </div>
 </div>
 
 

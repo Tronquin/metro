@@ -8,12 +8,12 @@ defmodule MetroWeb.EventController do
     events = Location.list_events()
     books = Enum.take(Location.list_books(), 4)
     {head, events} = List.pop_at(events, 0)
-    render(conn, "index.html", books: books ,events: events, head: head)
+    render(conn, "index.html", books: books, events: events, head: head)
   end
 
   def new(conn, _params) do
     changeset = Location.change_event(%Event{})
-    rooms = Location.load_rooms
+    rooms = Location.load_rooms()
     render(conn, "new.html", changeset: changeset, rooms: rooms)
   end
 
@@ -23,8 +23,9 @@ defmodule MetroWeb.EventController do
         conn
         |> put_flash(:info, "Event created successfully.")
         |> redirect(to: Routes.event_path(conn, :show, event))
+
       {:error, %Ecto.Changeset{} = changeset} ->
-        rooms = Location.load_rooms
+        rooms = Location.load_rooms()
         render(conn, "new.html", changeset: changeset, rooms: rooms)
     end
   end
@@ -37,7 +38,7 @@ defmodule MetroWeb.EventController do
   def edit(conn, %{"id" => id}) do
     event = Location.get_event!(id)
     changeset = Location.change_event(event)
-    rooms = Location.load_rooms
+    rooms = Location.load_rooms()
     render(conn, "edit.html", event: event, changeset: changeset, rooms: rooms)
   end
 
@@ -49,8 +50,9 @@ defmodule MetroWeb.EventController do
         conn
         |> put_flash(:info, "Event updated successfully.")
         |> redirect(to: Routes.event_path(conn, :show, event))
+
       {:error, %Ecto.Changeset{} = changeset} ->
-        rooms = Location.load_rooms
+        rooms = Location.load_rooms()
         render(conn, "edit.html", event: event, changeset: changeset, rooms: rooms)
     end
   end
