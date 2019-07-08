@@ -65,7 +65,7 @@ config :metro,
        Metro.Repo,
        adapter: Ecto.Adapters.Postgres,
        username: "postgres",
-       password: "postgres",
+       password: "secret",
        database: "metro_dev",
        hostname: "localhost",
        pool_size: 10

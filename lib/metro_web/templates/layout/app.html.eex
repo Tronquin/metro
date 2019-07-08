@@ -19,7 +19,7 @@
       <header class="header">
         <nav role="navigation">
             <ul class="breadcrumb text-right">
-                                                  <li><%= link "books", to: Routes.book_path(@conn, :index) %></li>
+              <li><%= link "books", to: Routes.book_path(@conn, :index) %></li>
                <%= if Coherence.current_user_name(@conn) do %>
                          <%= if @conn.assigns.current_user.is_librarian? do %>
                             <div class="dropdown" style="display:inline-block">

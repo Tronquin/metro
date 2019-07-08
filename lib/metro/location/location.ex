@@ -360,6 +360,7 @@ defmodule Metro.Location do
   end
 
   alias Metro.Location.Book
+  alias Metro.Location.Genre
 
   @doc """
   Returns the list of books.
@@ -409,7 +410,7 @@ defmodule Metro.Location do
           |> Repo.preload(:copies)
           |> Repo.preload(:author)
 
-alias Metro.Location.Copy
+  alias Metro.Location.Copy
   @doc """
   Returns a single copy of a book if one is available, if not returns nil.
 
@@ -425,8 +426,10 @@ alias Metro.Location.Copy
 
   """
   def find_copy(isbn_id) do
-    Repo.one(from c in Copy,
-    where: c.isbn_id == ^isbn_id and c.checked_out? == false, limit: 1)
+    Repo.one(
+      from c in Copy,
+      where: c.isbn_id == ^isbn_id and c.checked_out? == false, limit: 1
+    )
   end
 
   @doc """
@@ -460,8 +463,13 @@ alias Metro.Location.Copy
 
   """
   def update_book(%Book{} = book, attrs) do
+    genres = attrs["genres"] || []
+    genres = Repo.all from g in Genre, where: g.id in ^genres
+    genres = Repo.preload genres, :books
     book
+    |> Repo.preload(:genres)
     |> Book.changeset(attrs)
+    |> Ecto.Changeset.put_assoc(:genres, genres)
     |> Repo.update()
   end
 
@@ -684,5 +692,20 @@ alias Metro.Location.Copy
   """
   def change_event(%Event{} = event) do
     Event.changeset(event, %{})
+  end
+
+
+  alias Metro.Location.Genre
+  @doc """
+  Returns the list of genres.
+
+  ## Examples
+
+      iex> list_genres()
+      [%Genre{}, ...]
+
+  """
+  def list_genres do
+    Repo.all(Genre)
   end
 end

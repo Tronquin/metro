@@ -89,7 +89,7 @@ defmodule MetroWeb.Router do
     resources "/checkouts", CheckoutController
     put "/process/:id", CheckoutController, :process
 
-    get "/", BookController, :index
+    get "/", EventController, :index
   end
 
   scope "/", MetroWeb do

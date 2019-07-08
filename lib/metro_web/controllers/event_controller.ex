@@ -6,8 +6,9 @@ defmodule MetroWeb.EventController do
 
   def index(conn, _params) do
     events = Location.list_events()
+    books = Enum.take(Location.list_books(), 4)
     {head, events} = List.pop_at(events, 0)
-    render(conn, "index.html", events: events, head: head)
+    render(conn, "index.html", books: books ,events: events, head: head)
   end
 
   def new(conn, _params) do

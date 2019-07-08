@@ -12,7 +12,7 @@
 // If you no longer want to use a dependency, remember
 // to also remove its path from "config.paths.watched".
 import "phoenix_html"
-import css from '../css/app.css';
+import css from '../scss/app.scss';
 // import LiveSocket from "phoenix_live_view"
 
 // let liveSocket = new LiveSocket("/live")
