@@ -1,0 +1,15 @@
+@import "../base/fonts";
+@import "../base/variables";
+
+.base-button {
+    outline: none; 
+    border: none; 
+    width: 400px; 
+    height: 200px; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    color: $black; 
+    background-color: $pink;
+    font-family: 'ibm_plex_bold', sans-serif;
+}

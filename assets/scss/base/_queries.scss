@@ -1,0 +1,34 @@
+@import "./variables";
+
+@mixin mq-mobile-extra-small {
+    @media (max-width: $extra-sm-query) { @content; }
+  }
+  
+  @mixin mq-mobile-small {
+    @media (max-width: $sm-query) { @content; }
+  }
+
+  @mixin wrapper-unset {
+    @media (max-width: $md-query) { @content; }
+  }
+  
+  @mixin mq-mobile {
+    @media (min-width: $md-query) { @content; }
+  }
+  
+  @mixin mq-tablet {
+    @media (max-width: $xl-query) { @content; }
+  }
+  
+  @mixin  mq-desktop {
+    @media (min-width: $extra-xl-query) { @content; }
+  }
+  
+  // USAGE EXAMPLE
+  //   .header-title {  
+  //     font-size: 2rem;  
+    
+  //     @include for-phone-only {    
+  //        font-size: 1rem; 
+  //     }
+  //  }

@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-
-    <title>Hello Metro!</title>
+    <link rel="shortcut icon" type="image/ico" href="<%= Routes.static_path(@conn, "/favicon.ico") %>" />
+    <title>Phoenix Library!</title>
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
@@ -15,51 +15,66 @@
   </head>
 
   <body>
-    <div class="container">
-      <header class="header">
-        <nav role="navigation">
-            <ul class="breadcrumb text-right">
-              <li><%= link "books", to: Routes.book_path(@conn, :index) %></li>
+    <div class="wrapper">
+      <header class="navigation-bar row">
+        <div class="logo-container row">
+          <%= link to: Routes.work_path(@conn, :index) do img_tag("/images/svg/logo.svg") end %>
+          <h2 class="header-text">Phoenix Library</h2>
+        </div>
+        <div class="search-bar-container">
+          <input type="text"> <img src="<%= Routes.static_path(@conn, "/images/svg/search.svg") %>" />
+        </div>
+        <nav role="navigation" class="nav">
+            <ul class="nav__links">
+                <li>        
+                  <div class="search-bar-container-mobile">
+                    <input type="text"> <img src="<%= Routes.static_path(@conn, "/images/svg/search.svg") %>" />
+                  </div>
+                </li>
+               <li><%= link "Home", to: Routes.event_path(@conn, :index) %></li>
                <%= if Coherence.current_user_name(@conn) do %>
-                         <%= if @conn.assigns.current_user.is_librarian? do %>
-                            <div class="dropdown" style="display:inline-block">
-                                  <a class="dropdown-toggle" type="button" data-toggle="dropdown">
-                                      admin
-                                      <span class="caret"></span>
-                                  </a>
-                                  <ul class="dropdown-menu dropdown-menu-right">
-                                      <li><%= link "work", to: Routes.work_path(@conn, :index) %></li>
-                                      <li><%= link "transit", to: Routes.transit_path(@conn, :index) %></li>
-                                      <li><%= link "copies", to: Routes.copy_path(@conn, :index) %></li>
-                                      <li><%= link "waitlist", to: Routes.waitlist_path(@conn, :index) %></li>
-                                      <li><%= link "checkouts", to: Routes.checkout_path(@conn, :index) %></li>
-                                  </ul>
-                           </div>
-                         <% end %>
-
-                            <div class="dropdown" style="display:inline-block">
-                                <a class="dropdown-toggle" type="button" data-toggle="dropdown">
-                                    <%= Coherence.current_user_name(@conn) %>
-
-                                    <span class="caret"></span>
-                                </a>
-                                <ul class="dropdown-menu dropdown-menu-right">
-                                     <li><%= link "profile", to: Routes.user_path(@conn, :show, Coherence.current_user(@conn) ) %></li>
-                                    <li><%= link "log out", to: Routes.session_path(@conn, :delete), method: "delete" %></li>
-                                </ul>
-                            </div>
-                            <% else %>
-                <li><%= link "register", to: Routes.registration_path(@conn, :new) %></li>
-                <li><%= link "log in", to: Routes.session_path(@conn, :new) %></li>
-                                <% end %>
+                  <%= if @conn.assigns.current_user.is_librarian? do %>
+                    <li>
+                      <div class="dropdown" style="display:inline-block">
+                            <a class="dropdown-toggle" type="button" data-toggle="dropdown">
+                                admin
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-right">
+                                <li><%= link "work", to: Routes.work_path(@conn, :index) %></li>
+                                <li><%= link "transit", to: Routes.transit_path(@conn, :index) %></li>
+                                <li><%= link "copies", to: Routes.copy_path(@conn, :index) %></li>
+                                <li><%= link "waitlist", to: Routes.waitlist_path(@conn, :index) %></li>
+                                <li><%= link "checkouts", to: Routes.checkout_path(@conn, :index) %></li>
+                            </ul>
+                      </div>
+                    </li>
+                  <% end %>
+                  <li>
+                    <div class="dropdown" style="display:inline-block">
+                        <a class="dropdown-toggle" type="button" data-toggle="dropdown">
+                            <%= Coherence.current_user_name(@conn) %>
+  
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-right">
+                              <li><%= link "profile", to: Routes.user_path(@conn, :show, Coherence.current_user(@conn) ) %></li>
+                            <li><%= link "log out", to: Routes.session_path(@conn, :delete), method: "delete" %></li>
+                        </ul>
+                    </div>
+                  </li>
+                <% else %>
+                  <li><%= link "Books", to: Routes.book_path(@conn, :index) %></li>
+                  <li><%= link "Events", to: Routes.event_path(@conn, :index) %></li>
+                  <li><%= link "Register", to: Routes.registration_path(@conn, :new) %></li>
+                  <li><%= link "Log In", to: Routes.session_path(@conn, :new) %></li>
+                <% end %>
 
             </ul>
         </nav>
-          <ul class="nav nav-pills pull-right">
-            <li><a href="http://www.phoenixframework.org/docs">Get Started</a></li>
-          </ul>
-        </nav>
-        <span class="logo"></span>
+        <div class="menu-toggle">
+          <div class="menu-toggle__hamburger" />
+        </div>
       </header>
 
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
@@ -71,5 +86,18 @@
 
     </div> <!-- /container -->
     <script src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
+    <script>
+      const menuToggle = document.querySelector('.menu-toggle');
+      const hamburger = document.querySelector('.menu-toggle__hamburger');
+      const header = document.querySelector('header');
+      const logo = document.querySelector('.logo-container');
+      const nav = document.querySelector('.nav');
+      menuToggle.onclick = () => {
+        nav.classList.toggle('nav__open');       
+        hamburger.classList.toggle('open');
+        header.classList.toggle('navigation-bar-open');
+        logo.classList.toggle('logo-open');
+      }
+    </script>
   </body>
 </html>
