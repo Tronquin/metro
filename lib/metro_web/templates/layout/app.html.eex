@@ -18,8 +18,7 @@
     <div class="wrapper">
       <header class="navigation-bar row">
         <div class="logo-container row">
-          <%= link to: Routes.work_path(@conn, :index) do img_tag("/images/svg/logo.svg") end %>
-          <h2 class="header-text">Phoenix Library</h2>
+          <a href="/"> <img src="<%= Routes.static_path(@conn, "/images/svg/logo.svg") %>" /><span class="header-text">Phoenix Library</span></a>
         </div>
         <div class="search-bar-container">
           <input type="text"> <img src="<%= Routes.static_path(@conn, "/images/svg/search.svg") %>" />

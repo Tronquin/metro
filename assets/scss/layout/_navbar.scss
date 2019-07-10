@@ -22,8 +22,22 @@
     .logo-container {
         align-items: center;
         a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            span {
+                margin-left: 1em;
+                transition: color 0.3s ease;
+            }
             img {
                 width: 50px;
+            }
+
+            &:hover {
+                text-decoration: none;
+                span {
+                    color: $pink;
+                }
             }
         }
         h2 {
