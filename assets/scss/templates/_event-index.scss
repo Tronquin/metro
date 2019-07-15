@@ -1,0 +1,98 @@
+@import "../base/variables";
+@import "../base/queries";
+@import "../components/typography";
+@import "../base/fonts";
+
+.index {
+    background-color: $black;
+    border-radius: 5px; 
+    &-carousel {
+        &__events {
+            @for $i from 1 through 4 {
+                .event-0#{$i} {
+                    background-image: url('/images/jpg/event-background-0#{$i}')
+                }
+            }
+            .event__card {
+                background-color: $yellow;
+                color: $black; 
+                display: flex; 
+                flex-flow: column wrap; 
+                justify-content: center;
+                align-items: flex-start;
+                width: 500px;
+                height: 300px;
+                border-radius: 5px;
+                margin: 2em auto 2em 10em;
+                padding: 1em;
+                h2 {
+                    font-family: 'ibm_plex_bold';
+                    text-transform: uppercase;
+                    margin-top: auto; 
+                    font-size: 2em;
+                }
+
+                h3 {
+                    font-family: 'vollkorn_bold';
+                    margin: 0.5em 0;
+                    font-size: 2em;
+                } 
+                
+                p {
+                    font-family: 'ibm_plex_light';
+                    margin-bottom: auto;
+                }
+            }
+
+            .glide__arrow {
+                font-family: 'ibm_plex_bold';
+            }
+
+            .glide__bullets {
+                left: 94.5% !important;
+                bottom: 4em;
+            }
+            .glide__bullet {
+                &:hover {
+                    border: 2px solid $yellow;
+                }
+
+                &--active {
+                    background-color: $yellow;
+                }
+            }
+        }
+
+        &__books {
+            display: flex; 
+            width: 100%;
+            .headtext {
+                margin: 1em 2em;
+                width: 20%; 
+                display: flex; 
+                flex-flow: column wrap; 
+                justify-content: space-between;
+                h2 {
+                    border-top: 2px solid $white; 
+                    padding-top: 0.5em;
+                    font-family: 'vollkorn_bold';
+                    color: $white; 
+                    font-size: 2em;
+                    text-align: end;
+                }
+            }
+
+            .books {
+                justify-content: center;
+                &__placeholder {
+                    padding: 1em;
+                    img {
+                        width: 200px;
+                        height: 300px;
+                        border-radius: 5px; 
+                    }
+                }
+            }
+        }
+    }
+}

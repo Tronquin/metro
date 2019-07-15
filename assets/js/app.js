@@ -13,11 +13,15 @@
 // to also remove its path from "config.paths.watched".
 import "phoenix_html"
 import css from '../scss/app.scss';
+import Glide from '@glidejs/glide';
+
 // import LiveSocket from "phoenix_live_view"
 
 // let liveSocket = new LiveSocket("/live")
 // liveSocket.connect()
 
+
+new Glide('.glide').mount();
 
 $('[data-toggle="collapse"]').on('click', function() {
     $(this).toggleClass('collapsed');
