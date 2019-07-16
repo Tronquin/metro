@@ -4,9 +4,9 @@
 @import "../base/fonts";
 
 .index {
-    background-color: $black;
-    border-radius: 5px; 
     &-carousel {
+        background-color: $black;
+        border-radius: 5px; 
         &__events {
             @for $i from 1 through 4 {
                 .event-0#{$i} {
@@ -91,6 +91,37 @@
                         height: 300px;
                         border-radius: 5px; 
                     }
+                }
+            }
+        }
+    }
+}
+
+.about {
+    &-container {       
+        padding-top: 4em;
+        margin-bottom: 2.5em;
+        .book-image {
+            border-top: 2.5px solid black;
+            img {
+                margin: 5em auto 5em auto;
+            }
+        }
+
+        .text-card {
+            text-align: start;
+            margin: 0 1em;
+            h3 {
+                font-size: 1.5em;
+            }
+            p {
+                font-size: 1.2em;
+                margin: 1em 0;
+            }
+            a {
+                font-size: 1.2em;
+                &:hover {
+                    color: $pink;
                 }
             }
         }

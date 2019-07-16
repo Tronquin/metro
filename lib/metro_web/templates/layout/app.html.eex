@@ -85,7 +85,23 @@
       <main role="main">
         <%= render @view_module, @view_template, assigns %>
       </main>
-
+      <footer class="footer">
+          <div class="row contact">
+              <div class="column">
+                  <h3 class="white-header-text">Phoenix Library | Contact</h3>
+                  <h4>Tell us what you need!</h4>
+              </div>
+              <div class="column">
+                <div class="row">
+                    <input type="email" name="subscribe" id="subscribe" placeholder="JohnDoe@gmail.com">
+                    <button class="base-button">Subscribe</button>
+                </div>
+              </div>
+          </div>
+          <div class="row copyright">
+            <h6>Phoenix Library Copyright 2019</h6>
+          </div>
+      </footer>
     </div> <!-- /container -->
     <script src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
     <script>

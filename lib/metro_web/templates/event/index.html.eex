@@ -71,3 +71,42 @@
         </div>
     </div>
 <section>
+<section class="about">
+    <div class="about-container">
+        <div class="column">
+            <div class="row book-image">
+               <img src="<%= Routes.static_path(@conn, "/images/svg/logo.svg") %>" alt="book" />
+            </div>
+            <div class="row">
+                <div class="text-card">
+                    <h3 class="header-paragraph-text">
+                    Curator
+                    </h3>
+                    <p class="paragraph-text ">
+                    On busy days, throngs of Library visitors can make the Irma and Paul Milstein Division of United States History, Local History and Genealogy feel like a mini Ellis Island. These patrons are not the "tired… poor… huddled masses yearning to breathe free"—the iconic immigrants.
+                    </p>    
+                    <a href="#" class="link-text">Learn More</a>
+                </div>
+                <div class="text-card">
+                    <h3 class="header-paragraph-text">
+                    Publisher
+                    </h3>
+                    <p class="paragraph-text ">
+                    On busy days, throngs of Library visitors can make the Irma and Paul Milstein Division of United States History, Local History and Genealogy feel like a mini Ellis Island. These patrons are not the "tired… poor… huddled masses yearning to breathe free"—the iconic immigrants.
+                    </p>    
+                    <a href="#" class="link-text">Learn More</a>
+                </div>
+                <div class="text-card">
+                    <h3 class="header-paragraph-text">
+                    Non-Profit
+                    </h3>
+                    <p class="paragraph-text ">
+                    On busy days, throngs of Library visitors can make the Irma and Paul Milstein Division of United States History, Local History and Genealogy feel like a mini Ellis Island. These patrons are not the "tired… poor… huddled masses yearning to breathe free"—the iconic immigrants.
+                    </p>    
+                    <a href="#" class="link-text">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
