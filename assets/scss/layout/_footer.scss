@@ -53,5 +53,30 @@
             margin: 1em auto;
         }
     }
+}
 
+@include mq-tablet {
+    .footer {
+        padding: 1.5em 1.5em 0em 1.5em;
+        text-align: center;
+        .row {
+            flex-flow: column wrap; 
+            justify-content: space-between;
+        }
+
+        .contact {
+            &-text {
+                margin-bottom: 2.5em;
+            }
+
+            &-input {
+                input, button {
+                    margin: 0 auto;
+                }
+                input {
+                    margin-bottom: 1em;
+                }
+            }
+        }
+    }
 }

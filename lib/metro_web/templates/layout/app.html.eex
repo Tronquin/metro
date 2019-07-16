@@ -87,11 +87,11 @@
       </main>
       <footer class="footer">
           <div class="row contact">
-              <div class="column">
+              <div class="column contact-text">
                   <h3 class="white-header-text">Phoenix Library | Contact</h3>
                   <h4>Tell us what you need!</h4>
               </div>
-              <div class="column">
+              <div class="column contact-input">
                 <div class="row">
                     <input type="email" name="subscribe" id="subscribe" placeholder="JohnDoe@gmail.com">
                     <button class="base-button">Subscribe</button>

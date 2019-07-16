@@ -95,33 +95,102 @@
             }
         }
     }
-}
-
-.about {
-    &-container {       
-        padding-top: 4em;
-        margin-bottom: 2.5em;
-        .book-image {
-            border-top: 2.5px solid black;
-            img {
-                margin: 5em auto 5em auto;
+    &-about {
+        .about-container {       
+            padding-top: 4em;
+            margin-bottom: 2.5em;
+            .book-image {
+                border-top: 2.5px solid black;
+                img {
+                    margin: 5em auto 5em auto;
+                }
+            }
+    
+            .text-card {
+                text-align: start;
+                margin: 0 1em;
+                h3 {
+                    font-size: 1.5em;
+                }
+                p {
+                    font-size: 1.2em;
+                    margin: 1em 0;
+                }
+                a {
+                    font-size: 1.2em;
+                    &:hover {
+                        color: $pink;
+                    }
+                }
             }
         }
+    }
+}
 
-        .text-card {
-            text-align: start;
-            margin: 0 1em;
-            h3 {
-                font-size: 1.5em;
+@include mq-tablet {    
+   .index {
+        &-carousel {
+            .event__card {
+                margin: 5em auto;
             }
-            p {
-                font-size: 1.2em;
-                margin: 1em 0;
+
+            .glide__arrows {
+                display: none;
             }
-            a {
-                font-size: 1.2em;
-                &:hover {
-                    color: $pink;
+
+            .glide__bullets {
+                bottom: 1.5em; 
+                left: 50% !important;
+            }
+
+            &__books {
+                display: flex;
+                flex-flow: column wrap;
+                align-items: center;
+                .headtext {
+                    width: unset; 
+                    h2 {
+                        text-align: center;
+                        margin: 1em 0;
+                    }
+                }
+                .books {
+                    flex-flow: column wrap; 
+                }
+            }
+
+        }
+
+        &-about {
+            .row {
+                flex-flow: column wrap;
+            }
+
+            .text-card {
+                margin: 1em !important;
+            }
+        }
+   } 
+}
+
+@include mq-mobile-small {
+    .index {
+        &-carousel {
+            .event__card {
+                margin: 2em auto 5em auto;
+                padding: 0em;
+                font-size: 14px;
+                width: 300px;
+                h2 {
+                    margin: 0 auto;
+                }
+                h3 {
+                    font-size: 1.5em;
+                    margin: 0.5em auto;
+                } 
+                p {
+                    margin: 0 auto;
+                    text-align: center;
                 }
             }
         }
