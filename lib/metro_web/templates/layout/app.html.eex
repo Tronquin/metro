@@ -6,79 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="shortcut icon" type="image/ico" href="<%= Routes.static_path(@conn, "/favicon.ico") %>" />
-    <title>Phoenix Library!</title>
+    <%= if Coherence.current_user(@conn) do %>
+    <%= tag :meta, name: "user_token", content: Phoenix.Token.sign(@conn, "user", Coherence.current_user(@conn).id) %>
+    <% end %>
 
-   <link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css"
-         rel = "stylesheet">
-      <script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
-      <script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
-  <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <title>Hello Metro!</title>
+
+
+   <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+   <link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel = "stylesheet">
+   <script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
     <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>">
   </head>
 
   <body>
     <div class="wrapper">
-      <header class="navigation-bar row">
-        <div class="logo-container row">
-          <a href="/"> <img src="<%= Routes.static_path(@conn, "/images/svg/logo.svg") %>" /><span class="header-text">Phoenix Library</span></a>
-        </div>
-        <div class="search-bar-container">
-          <input type="text"> <img src="<%= Routes.static_path(@conn, "/images/svg/search.svg") %>" />
-        </div>
-        <nav role="navigation" class="nav">
-            <ul class="nav__links">
-                <li>        
-                  <div class="search-bar-container-mobile">
-                    <input type="text"> <img src="<%= Routes.static_path(@conn, "/images/svg/search.svg") %>" />
-                  </div>
-                </li>
-               <li><%= link "Home", to: Routes.event_path(@conn, :index) %></li>
-               <%= if Coherence.current_user_name(@conn) do %>
-                  <%= if @conn.assigns.current_user.is_librarian? do %>
-                    <li>
-                      <div class="dropdown" style="display:inline-block">
-                            <a class="dropdown-toggle" type="button" data-toggle="dropdown">
-                                admin
-                                <span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-right">
-                                <li><%= link "work", to: Routes.work_path(@conn, :index) %></li>
-                                <li><%= link "transit", to: Routes.transit_path(@conn, :index) %></li>
-                                <li><%= link "copies", to: Routes.copy_path(@conn, :index) %></li>
-                                <li><%= link "waitlist", to: Routes.waitlist_path(@conn, :index) %></li>
-                                <li><%= link "checkouts", to: Routes.checkout_path(@conn, :index) %></li>
-                            </ul>
-                      </div>
-                    </li>
-                  <% end %>
-                  <li>
-                    <div class="dropdown" style="display:inline-block">
-                        <a class="dropdown-toggle" type="button" data-toggle="dropdown">
-                            <%= Coherence.current_user_name(@conn) %>
-  
-                            <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-right">
-                              <li><%= link "profile", to: Routes.user_path(@conn, :show, Coherence.current_user(@conn) ) %></li>
-                            <li><%= link "log out", to: Routes.session_path(@conn, :delete), method: "delete" %></li>
-                        </ul>
-                    </div>
-                  </li>
-                <% else %>
-                  <li><%= link "Books", to: Routes.book_path(@conn, :index) %></li>
-                  <li><%= link "Events", to: Routes.event_path(@conn, :index) %></li>
-                  <li><%= link "Register", to: Routes.registration_path(@conn, :new) %></li>
-                  <li><%= link "Log In", to: Routes.session_path(@conn, :new) %></li>
-                <% end %>
-
-            </ul>
-        </nav>
-        <div class="menu-toggle">
-          <div class="menu-toggle__hamburger" />
-        </div>
-      </header>
-
+     <%= render_shared "navbar.html", assigns %>
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
       <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
 
@@ -103,6 +49,7 @@
           </div>
       </footer>
     </div> <!-- /container -->
+    <script> window.userId =  "<%= @conn.assigns[:user_id] %>" </script>
     <script src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
     <script>
       const menuToggle = document.querySelector('.menu-toggle');
@@ -116,6 +63,46 @@
         header.classList.toggle('navigation-bar-open');
         logo.classList.toggle('logo-open');
       }
+
+      $(document).ready(function () {
+
+            // ANIMATEDLY DISPLAY THE NOTIFICATION COUNTER.
+            $('#noti_Counter')
+                .css({ opacity: 0 })
+                .css({ top: '-10px' })
+                .animate({ top: '-2px', opacity: 1 }, 500);
+
+            $('#noti_Button').click(function () {
+
+                // TOGGLE (SHOW OR HIDE) NOTIFICATION WINDOW.
+                $('#notifications').fadeToggle('fast', 'linear', function () {
+                    if ($('#notifications').is(':hidden')) {
+                        $('#noti_Button').css('background-color', '#2E467C');
+                    }
+                    // CHANGE BACKGROUND COLOR OF THE BUTTON.
+                    else $('#noti_Button').css('background-color', '#FFF');
+                });
+
+                $('#noti_Counter').fadeOut('slow');     // HIDE THE COUNTER.
+
+                return false;
+            });
+
+            // HIDE NOTIFICATIONS WHEN CLICKED ANYWHERE ON THE PAGE.
+            $(document).click(function () {
+                $('#notifications').hide();
+
+                // CHECK IF NOTIFICATION COUNTER IS HIDDEN.
+                if ($('#noti_Counter').is(':hidden')) {
+                    // CHANGE BACKGROUND COLOR OF THE BUTTON.
+                    $('#noti_Button').css('background-color', '#2E467C');
+                }
+            });
+
+            $('#notifications').click(function () {
+                return false;       // DO NOTHING WHEN CONTAINER IS CLICKED.
+            });
+        });
     </script>
   </body>
 </html>

@@ -48,8 +48,8 @@ config :metro,
            ~r{priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$},
            ~r{priv/gettext/.*(po)$},
            ~r{lib/metro_web/views/.*(ex)$},
-           ~r{lib/metro_web/templates/.*(eex)$}
-#           ~r{lib/metro_web/live/.*(ex)$}
+           ~r{lib/metro_web/templates/.*(eex)$},
+           ~r{lib/my_app_web/live/.*(ex)$}
          ]
        ]
 
@@ -59,6 +59,9 @@ config :logger, :console, format: "[$level] $message\n"
 # Set a higher stacktrace during development. Avoid configuring such
 # in production as building large stacktraces may be expensive.
 config :phoenix, :stacktrace_depth, 20
+
+config :phoenix, :template_engines, leex: Phoenix.LiveView.Engine
+
 
 # Configure your database
 config :metro,

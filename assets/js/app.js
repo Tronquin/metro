@@ -13,19 +13,37 @@
 // to also remove its path from "config.paths.watched".
 import "phoenix_html"
 import css from '../scss/app.scss';
+
 import Glide from '@glidejs/glide';
-
-// import LiveSocket from "phoenix_live_view"
-
-// let liveSocket = new LiveSocket("/live")
-// liveSocket.connect()
-
-
 new Glide('.glide').mount();
 
-$('[data-toggle="collapse"]').on('click', function() {
+// import LiveSocket from "phoenix_live_view"
+import LiveSocket from "phoenix_live_view"
+
+if(document.querySelector("meta[name=user_token]")) {
+
+
+    const liveSocket = new LiveSocket("/live");
+    liveSocket.connect();
+
+    let userId = window.userId;
+
+    let channel = liveSocket.channel(`notifications:${userId}`, {});
+
+    channel.on('new_notification', payload => {
+        console.log(payload);
+        // document.getElementById("noti_Counter").innerHTML = parseInt(document.getElementById("noti_Counter").innerHTML) + 1
+    });
+}
+
+
+$('[data-toggle="collapse"]').on('click', function () {
     $(this).toggleClass('collapsed');
 });
+
+
+
+
 
 // Import local files
 //

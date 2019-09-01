@@ -1,21 +1,25 @@
 <h2>Listing Books</h2>
+<div class="row">
 <%= form_for @conn, Routes.book_path(@conn, :index), [as: "search", method: :get], fn f -> %>
    <%= select f, :search_by, ["title": "title", "summary": "summary", "author": "author"], selected: "title" %>
   <label>
     <%= text_input f, :query %>
   </label>
   <%= submit "Submit" %>
-
+</div>
+<div class="row">
+<div id="siderbar" class="col-sm-3 make-me-sticky" style="height: 100%">
+<div class="row">
 <p>
   <label for="years">Years:</label>
   <input type="text" name=search[years] id="search_years" readonly style="border:0; color:#f6931f; font-weight:bold;">
 </p>
+</div>
 
-<div id="slider-range"></div>
 
+<div id="slider-range" class=""></div>
 
-<div class="form-group">
-    <ul class="checkbox-grid" >
+    <ul class="checkbox-grid"  class="" >
       <%=
         vertical_checkboxes(
           f,
@@ -27,8 +31,8 @@
       <%= error_tag f, :genres %>
     </ul>
 </div>
-
-<table class="table" style="width: 50%">
+<div class="col-sm-9 table-responsive table-body">
+<table class="table">
   <thead>
     <tr>
       <th>Image</th>
@@ -59,7 +63,6 @@
 <% end %>
   </tbody>
 </table>
-
 <div>
 <span><%= link "New Book", to: Routes.book_path(@conn, :new) %></span>
 
@@ -69,13 +72,16 @@
 
 
 <%= pagination_links @conn, @page, pagination_params(@conn.params) %>
+</div>
+</div>
+
 <script>
  $( function() {
     $( "#slider-range" ).slider({
       range: true,
       min: <%= @min %>,
       max: <%= @max %>,
-      values: [ <%= @min %>, <%= @max %> ],
+      values: [ <%= @b_year %>, <%= @e_year %> ],
       slide: function( event, ui ) {
         $( "#search_years" ).val(ui.values[ 0 ] + " - " + ui.values[ 1 ] );
       }
