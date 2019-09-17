@@ -152,5 +152,136 @@
   }
 }
 
-@media screen and (max-width: 600px) {
+@include mq-tablet {
+  .books {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+    &-filters {
+      height: unset;
+      margin-bottom: 2em;
+      &__list {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr;
+        grid-template-areas:
+          "header . ."
+          "search slider slider"
+          "genres genres genres"
+          "submit new .";
+        .book-list {
+          &__header {
+            grid-area: header;
+            align-self: center;
+          }
+          &__search {
+            grid-area: search;
+            align-self: center;
+          }
+          &__slider {
+            grid-area: slider;
+            align-self: center;
+          }
+          &__genres {
+            grid-area: genres;
+            align-self: center;
+          }
+          &__btn-new {
+            grid-area: new;
+            align-self: center;
+          }
+          &__btn-submit {
+            grid-area: submit;
+            align-self: center;
+          }
+        }
+
+        &-item {
+          .genres {
+            .form-group {
+              flex-flow: row wrap;
+
+              & > div {
+                margin: 0.2em 1em;
+              }
+              label {
+                margin-right: 2em;
+                &::after {
+                  content: ":";
+                }
+
+                .formGroup {
+                  margin-right: 1em;
+                  input[type="checkbox"] {
+                    margin-right: 0.5em;
+                  }
+                }
+              }
+            }
+          }
+          .header {
+            h2 {
+              text-transform: uppercase;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@include mq-mobile-small {
+  .books {
+    &-filters {
+      &__list {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        grid-template-areas:
+          "header ."
+          "search ."
+          "genres ."
+          "submit new";
+        .book-list {
+          &__header {
+            grid-area: header;
+            align-self: center;
+          }
+          &__search {
+            grid-area: search;
+            align-self: center;
+          }
+          &__slider {
+            grid-area: slider;
+            align-self: center;
+          }
+          &__genres {
+            grid-area: genres;
+            align-self: center;
+          }
+          &__btn-new {
+            grid-area: new;
+            align-self: center;
+          }
+          &__btn-submit {
+            grid-area: submit;
+            align-self: center;
+          }
+        }
+
+        &-item {
+          .genres {
+            .form-group {
+            }
+          }
+          .header {
+            h2 {
+              text-transform: uppercase;
+            }
+          }
+        }
+      }
+    }
+  }
 }
