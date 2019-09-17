@@ -6,22 +6,24 @@
                 <h2 class="header">Listing Books</h2>
             </li>
             <li class="books-filters__list-item">
-                <%= form_for @conn, Routes.book_path(@conn, :index), [as: "search", method: :get], fn f -> %>
-                <%= select f, :search_by, ["title": "title", "summary": "summary", "author": "author"], selected: "title" %>
-                <label>
-                  <%= text_input f, :query %>
-                </label>
-                <%= submit "Submit" %>
+              <div class="search-input">
+                  <%= form_for @conn, Routes.book_path(@conn, :index), [as: "search", method: :get], fn f -> %>
+                  <%= select f, :search_by, ["title": "title", "summary": "summary", "author": "author"], selected: "title" %>
+                  <label>
+                    <%= text_input f, :query %>
+                  </label>
+              </div>
             </li>
-            <li class="books-filters__list-item">
-                <div class="year-slider" id="slider-range">
-                  <label for="years">Years:</label>
-                  <input type="text" name=search[years] id="search_years" readonly style="border:0; color:#f6931f; font-weight:bold;">
+            <li class="books-filters__list-item years">
+               <div class="years__info">
+                 <label for="years">Years:</label>
+                  <input type="text" name=search[years] id="search_years" readonly style="border:0; color:#D97398; font-weight:bold;">
+               </div>
+                <div class="years__slider" id="slider-range">
                 </div>
             </li>
             <li class="books-filters__list-item">
                 <div class="genres">
-                  <div class="form-group genres">
                     <%=
                       vertical_checkboxes(
                         f,
@@ -31,46 +33,68 @@
                       )
                     %>
                     <%= error_tag f, :genres %>
-                  </div>
                 </div>
             </li>
             <div class="books-filters__list-item">
                   <button class="btn__new-book"><%= link "New Book", to: Routes.book_path(@conn, :new) %></button>
             </div>
+            <div class="books-filters__list-item btn__submit">
+            <%= submit "Submit" %>
+            </div>
         </ul>
     </div>
     <div class="books-table">
-        <table>
-            <caption>Books</caption>
-            <thead>
-                <tr>
-                    <th scope="col">Image</th>
-                    <th scope="col">ISBN</th>
-                    <th scope="col">Title</th>
-                    <th scope="col">Year</th>
-                    <th scope="col">Pages</th>
-                    <th scope="col">Controls</th>
-                </tr>
-            </thead>
-            <tbody>
-            <%= for book <- @books do %>
-              <tr>
-                <td><img src="<%= book.image %>"height="360" width="233"</img></td>
-                <td><%= book.isbn %></td>
-                <td><%= book.title %></td>
-                <td><%= book.year %></td>
-                <td><%= String.slice(book.summary, 0..20) %></td>
-                <td><%= book.pages %></td>
-                <td>
-                  <span><%= link "Show", to: Routes.book_path(@conn, :show, book), class: "btn btn-default btn-xs" %></span>
-                  <span><%= link "Edit", to: Routes.book_path(@conn, :edit, book), class: "btn btn-default btn-xs" %></span>
-                  <span><%= link "Delete", to: Routes.book_path(@conn, :delete, book), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
-                </td>
-              </tr>
-            <% end %>
-            </tbody>
-        </table>
-        <div class="books-table__pagination">
+        <div class="table">
+        <div class="table-caption">
+          Books
+        </div>
+        <div class="table-head">
+          <h2 class="table-head__item">
+            Image
+          </h2>
+          <h2 class="table-head__item">
+            Isbn
+          </h2>
+          <h2 class="table-head__item">
+            Title
+          </h2>
+          <h2 class="table-head__item">
+            Year
+          </h2>
+          <h2 class="table-head__item">
+            Pages
+          </h2>
+          <h2 class="table-head__item">
+            Controls
+          </h2> 
+        </div class="table-body">
+          <%= for book <- @books do %>
+            <div class="table-body__row">
+              <div class="table-body__row-column">
+                <img src="<%= book.image %>"height="360" width="233"</img>
+              </div>
+              <div class="table-body__row-column">
+                <p><%= book.isbn %></p>
+              </div>
+              <div class="table-body__row-column">
+                <p><%= book.title %></p>
+              </div>
+              <div class="table-body__row-column">
+                <p><%= book.year %></p>
+              </div>
+              <div class="table-body__row-column">
+                <p><%= book.pages %></p>
+              </div>
+              <div class="table-body__row-column table-body__row-buttons">
+                <%= link "Show", to: Routes.book_path(@conn, :show, book), class: "btn__show" %>
+                <%= link "Edit", to: Routes.book_path(@conn, :edit, book), class: "btn__edit" %>
+                <%= link "Delete", to: Routes.book_path(@conn, :delete, book), method: :delete, data: [confirm: "Are you sure?"], class: "btn__delete" %>
+              </div>
+            </div>
+            <hr class="table-body__divider">
+          <% end %>
+        </div>
+        <div class="table-pagination">
           <%= pagination_links @conn, @page, pagination_params(@conn.params) %>
         </div>
     </div>

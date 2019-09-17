@@ -1,0 +1,107 @@
+@import "../base/variables";
+@import "../base/queries";
+@import "../components/typography";
+@import "../base/fonts";
+
+.table {
+  overflow: hidden;
+  border-radius: 5px;
+  display: flex;
+  flex-flow: column wrap;
+  padding: 1em;
+  padding-top: 0;
+  background-color: $grey;
+  &-caption {
+    font-family: "vollkorn_bold";
+    color: $pink;
+    font-size: 1.5em;
+    margin: 1em 0;
+    display: none;
+  }
+
+  &-head {
+    background-color: $grey;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    padding: 0.5em;
+    border-bottom: 2px solid $black;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    &__item {
+      margin-right: 0.5em;
+      font-family: "ibm_plex_bold";
+      color: $black;
+      text-transform: uppercase;
+      &:first-child {
+        width: 233px;
+      }
+    }
+  }
+
+  &-body {
+    &__row {
+      background-color: $grey;
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      padding: 0.5em;
+      &:last-child {
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+      }
+      &-column {
+        padding-right: 0.5em;
+        font-size: $md-text;
+        img {
+          border-radius: 5px;
+        }
+        p {
+          font-family: "ibm_plex_light";
+          color: $black;
+        }
+
+        a {
+          color: $black;
+          font-family: "ibm_plex_bold";
+          text-transform: uppercase;
+          margin-bottom: 0.5em;
+          text-decoration: none;
+          padding: 0.2em 0.5em;
+          border-radius: 5px;
+          text-align: center;
+          &:last-child {
+            margin-bottom: none;
+          }
+        }
+
+        .btn {
+          &__show {
+            background-color: $white;
+          }
+
+          &__edit {
+            background-color: $yellow;
+          }
+
+          &__delete {
+            background-color: $pink;
+          }
+        }
+      }
+
+      &-buttons {
+        display: flex;
+        flex-flow: column wrap;
+      }
+    }
+
+    &__divider {
+      width: 100%;
+      border-width: 2px;
+      border-color: black;
+      margin: 0.5em 0;
+    }
+  }
+
+  &-pagination {
+  }
+}

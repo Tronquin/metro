@@ -7,114 +7,150 @@
   display: grid;
   grid-template-columns: 1fr 3fr;
   grid-gap: 1em;
-  grid-template-areas: 'filters table';
-    &-filters {
-      grid-area: filters;
-      padding: 1em;
-      background: $black;
-      &__list {
-          display: flex;
-          flex-flow: column wrap;
-          &-item {
-              margin: 1em 0;
-              .header {
-
-              }
-
-              .year-slider {
-
-              }
-
-              .genres {
-
-              }
-          }
-      }
-    }
-
-    &-table {
-      grid-area: table;
+  grid-template-areas: "filters table";
+  &-filters {
+    grid-area: filters;
+    padding: 1em 2em;
+    background: $black;
+    border-radius: 5px;
+    height: 700px;
+    &__list {
       display: flex;
       flex-flow: column wrap;
-        table {
-            border: 1px solid #ccc;
-            border-collapse: collapse;
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            table-layout: fixed;
+      &-item {
+        margin: 1em 0;
+        .header {
+          color: $pink;
+          font-family: "ibm_plex_bold";
+          text-transform: capitalize;
+          font-size: 2em;
+          border-bottom: none;
+          margin-bottom: 0;
         }
 
-        table caption {
-            font-size: 1.5em;
-            margin: .5em 0 .75em;
+        .search-input {
+          form {
+            display: flex;
+            select,
+            input[type="text"] {
+              border-radius: 5px;
+              outline: none;
+              border: none;
+            }
+
+            input[type="text"] {
+              padding: 0.3em;
+              font-family: "ibm_plex_light";
+            }
+
+            select {
+              margin-right: 1em;
+              font-family: "ibm_plex_regular";
+              color: $black;
+              text-align: center;
+              option {
+                font-family: "ibm_plex_regular";
+                color: $black;
+              }
+            }
+          }
         }
 
-        table tr {
-            background-color: #f8f8f8;
-            border: 1px solid #ddd;
-            padding: .35em;
+        .years {
+          &__info {
+            label,
+            input[type="text"] {
+              position: relative;
+              bottom: 1em;
+              font-family: "ibm_plex_bold";
+            }
+            label {
+              color: $grey;
+              margin-right: 1em;
+            }
+            input[type="text"] {
+              background: transparent;
+            }
+          }
+          &__slider {
+            display: flex;
+            flex-flow: column-reverse wrap;
+            .ui-widget-header {
+              background: $grey !important;
+            }
+          }
         }
 
-        table th,
-        table td {
-            padding: .625em;
-            text-align: center;
+        .genres {
+          .form-group {
+            display: flex;
+            flex-flow: column wrap;
+            margin-bottom: 0 !important;
+            label {
+              font-family: "ibm_plex_bold";
+              color: $grey;
+              font-size: 1.2em;
+              margin-bottom: 1em;
+            }
+
+            & > div {
+              margin: 0.2em 0;
+            }
+
+            .formGroup {
+              &:last-child {
+                margin-bottom: 0;
+              }
+
+              input[type="checkbox"] {
+                margin-right: 1.5em;
+              }
+              font-family: "ibm_plex_regular";
+              color: $grey;
+            }
+          }
         }
 
-        table th {
-            font-size: .85em;
-            letter-spacing: .1em;
+        .btn__new-book {
+          outline: none;
+          border: none;
+          background: $yellow;
+          border-radius: 5px;
+          padding: 0.5em 2em;
+          a {
             text-transform: uppercase;
+            font-family: "ibm_plex_bold";
+            text-align: center;
+            color: $black;
+          }
         }
+      }
+
+      .btn__submit {
+        button {
+          background: $pink;
+          border-radius: 5px;
+          padding: 0.5em 2em;
+          border: none;
+          outline: none;
+          text-transform: uppercase;
+          font-family: "ibm_plex_bold";
+          text-align: center;
+          color: $black;
+        }
+      }
     }
+  }
+
+  &-table {
+    grid-area: table;
+    display: flex;
+    flex-flow: column wrap;
+    overflow: hidden;
+    border-radius: 5px;
+    //For styles on the table itself, refer to the partial tables.scss in the scss folder
+  }
 }
 
 @media screen and (max-width: 600px) {
-  table {
-    border: 0;
-  }
-
-  table caption {
-    font-size: 1.3em;
-  }
-  
-  table thead {
-    border: none;
-    clip: rect(0 0 0 0);
-    height: 1px;
-    margin: -1px;
-    overflow: hidden;
-    padding: 0;
-    position: absolute;
-    width: 1px;
-  }
-  
-  table tr {
-    border-bottom: 3px solid #ddd;
-    display: block;
-    margin-bottom: .625em;
-  }
-  
-  table td {
-    border-bottom: 1px solid #ddd;
-    display: block;
-    font-size: .8em;
-    text-align: right;
-  }
-  
-  table td::before {
-    /*
-    * aria-label has no advantage, it won't be read inside a table
-    content: attr(aria-label);
-    */
-    content: attr(data-label);
-    float: left;
-    font-weight: bold;
-    text-transform: uppercase;
-  }
-  
-  table td:last-child {
-    border-bottom: 0;
-  }
 }

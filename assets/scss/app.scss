@@ -12,16 +12,16 @@
 @import "./components/buttons";
 @import "./components/grid";
 @import "./components/typography";
+@import "./components/tables";
 
 //Templates
 @import "./templates/event-index";
 @import "./templates/books-index";
 
-
 //Layout
 @import "./layout/navbar";
 @import "./layout/footer";
 
-//Glide Carousel 
+//Glide Carousel
 @import "node_modules/@glidejs/glide/src/assets/sass/glide.core";
 @import "node_modules/@glidejs/glide/src/assets/sass/glide.theme";
