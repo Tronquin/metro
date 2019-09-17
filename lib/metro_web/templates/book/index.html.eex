@@ -1,82 +1,84 @@
-<h2>Listing Books</h2>
-<div class="row">
-<%= form_for @conn, Routes.book_path(@conn, :index), [as: "search", method: :get], fn f -> %>
-   <%= select f, :search_by, ["title": "title", "summary": "summary", "author": "author"], selected: "title" %>
-  <label>
-    <%= text_input f, :query %>
-  </label>
-  <%= submit "Submit" %>
-</div>
-<div class="row">
-<div id="siderbar" class="col-sm-3 make-me-sticky" style="height: 100%">
-<div class="row">
-<p>
-  <label for="years">Years:</label>
-  <input type="text" name=search[years] id="search_years" readonly style="border:0; color:#f6931f; font-weight:bold;">
-</p>
-</div>
 
-
-<div id="slider-range" class=""></div>
-
-    <ul class="checkbox-grid"  class="" >
-      <%=
-        vertical_checkboxes(
-          f,
-          :genres,
-          Enum.map(@genres, fn g -> { g.category, g.id, g.count} end),
-          selected: []
-        )
-      %>
-      <%= error_tag f, :genres %>
-    </ul>
-</div>
-<div class="col-sm-9 table-responsive table-body">
-<table class="table">
-  <thead>
-    <tr>
-      <th>Image</th>
-      <th>Isbn</th>
-      <th>Title</th>
-      <th>Year</th>
-      <th>Summary</th>
-      <th>Pages</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-<%= for book <- @books do %>
-    <tr>
-      <td><img src="<%= book.image %>"height="360" width="233"</img></td>
-      <td><%= book.isbn %></td>
-      <td><%= book.title %></td>
-      <td><%= book.year %></td>
-      <td><%= String.slice(book.summary, 0..20) %></td>
-      <td><%= book.pages %></td>
-
-      <td class="text-right">
-        <span><%= link "Show", to: Routes.book_path(@conn, :show, book), class: "btn btn-default btn-xs" %></span>
-        <span><%= link "Edit", to: Routes.book_path(@conn, :edit, book), class: "btn btn-default btn-xs" %></span>
-        <span><%= link "Delete", to: Routes.book_path(@conn, :delete, book), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
-      </td>
-    </tr>
+<section class="books">
+    <div class="books-filters">
+        <ul class="books-filters__list">
+            <li class="books-filters__list-item">
+                <h2 class="header">Listing Books</h2>
+            </li>
+            <li class="books-filters__list-item">
+                <%= form_for @conn, Routes.book_path(@conn, :index), [as: "search", method: :get], fn f -> %>
+                <%= select f, :search_by, ["title": "title", "summary": "summary", "author": "author"], selected: "title" %>
+                <label>
+                  <%= text_input f, :query %>
+                </label>
+                <%= submit "Submit" %>
+            </li>
+            <li class="books-filters__list-item">
+                <div class="year-slider" id="slider-range">
+                  <label for="years">Years:</label>
+                  <input type="text" name=search[years] id="search_years" readonly style="border:0; color:#f6931f; font-weight:bold;">
+                </div>
+            </li>
+            <li class="books-filters__list-item">
+                <div class="genres">
+                  <div class="form-group genres">
+                    <%=
+                      vertical_checkboxes(
+                        f,
+                        :genres,
+                        Enum.map(@genres, fn g -> { g.category, g.id, g.count} end),
+                        selected: []
+                      )
+                    %>
+                    <%= error_tag f, :genres %>
+                  </div>
+                </div>
+            </li>
+            <div class="books-filters__list-item">
+                  <button class="btn__new-book"><%= link "New Book", to: Routes.book_path(@conn, :new) %></button>
+            </div>
+        </ul>
+    </div>
+    <div class="books-table">
+        <table>
+            <caption>Books</caption>
+            <thead>
+                <tr>
+                    <th scope="col">Image</th>
+                    <th scope="col">ISBN</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Year</th>
+                    <th scope="col">Pages</th>
+                    <th scope="col">Controls</th>
+                </tr>
+            </thead>
+            <tbody>
+            <%= for book <- @books do %>
+              <tr>
+                <td><img src="<%= book.image %>"height="360" width="233"</img></td>
+                <td><%= book.isbn %></td>
+                <td><%= book.title %></td>
+                <td><%= book.year %></td>
+                <td><%= String.slice(book.summary, 0..20) %></td>
+                <td><%= book.pages %></td>
+                <td>
+                  <span><%= link "Show", to: Routes.book_path(@conn, :show, book), class: "btn btn-default btn-xs" %></span>
+                  <span><%= link "Edit", to: Routes.book_path(@conn, :edit, book), class: "btn btn-default btn-xs" %></span>
+                  <span><%= link "Delete", to: Routes.book_path(@conn, :delete, book), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
+                </td>
+              </tr>
+            <% end %>
+            </tbody>
+        </table>
+        <div class="books-table__pagination">
+          <%= pagination_links @conn, @page, pagination_params(@conn.params) %>
+        </div>
+    </div>
 <% end %>
-  </tbody>
-</table>
-<div>
-<span><%= link "New Book", to: Routes.book_path(@conn, :new) %></span>
-
-</div>
-
-<% end %>
-
-
-<%= pagination_links @conn, @page, pagination_params(@conn.params) %>
-</div>
-</div>
+</section>
 
 <script>
- $( function() {
+  $( function() {
     $( "#slider-range" ).slider({
       range: true,
       min: <%= @min %>,
@@ -89,7 +91,4 @@
     $( "#search_years" ).val($( "#slider-range" ).slider( "values", 0 ) +
       " - " + $( "#slider-range" ).slider( "values", 1 ) );
   } );
-  </script>
-
-
-
+</script>
