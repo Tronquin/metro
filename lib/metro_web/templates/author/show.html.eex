@@ -1,59 +1,75 @@
-<h2><%= @author.last_name %>,  <%= @author.first_name %></h2>
-<div class="container">
-<img height="360" width="233" src="http://www.clcmn.edu/wp-content/uploads/2018/06/CLCNoPhoto.jpg">
+<section class="author-show">
+    <div class="author-show__about">
+        <div class="author-show__about-header">
+            <div class="author-show__about-header-text">
+                <h1><%= @author.last_name %>, <%= @author.first_name %></h1>
+                <h3><%= @author.location %></h3>
+            </div>
+        </div>
+        <div class="author-show__about-description">
+            <div class="author-show__about-description__image">
+                <img height="360" width="233" src="http://www.clcmn.edu/wp-content/uploads/2018/06/CLCNoPhoto.jpg">
+            </div>
+            <div class="author-show__about-description__text">
+                <p><%= @author.bio %></p>
+                <div class="author-show__about-description__text-button">
 
-  <ul>
-    <strong>Location:</strong>
-    <%= @author.location %>
-  </ul>
-
-  <ul>
-    <strong>Bio:</strong>
-    <%= @author.bio %>
-  </ul>
-
-</div>
-
-<div>
-
-<h4>Some of <%= @author.last_name %>'s  works</h4>
-
-<table class="table">
-  <thead>
-    <tr>
-      <th>Image</th>
-      <th>Isbn</th>
-      <th>Title</th>
-      <th>Year</th>
-      <th>Summary</th>
-      <th>Pages</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-<%= for book <- @page.entries do %>
-    <tr>
-      <td><img src="<%= book.image %>"height="180" width="120"</img></td>
-      <td><%= book.isbn %></td>
-      <td><%= book.title %></td>
-      <td><%= book.year %></td>
-      <td><%= String.slice(book.summary, 0..20) %></td>
-      <td><%= book.pages %></td>
-
-      <td class="text-right">
-        <span><%= link "Show", to: Routes.book_path(@conn, :show, book), class: "btn btn-default btn-xs" %></span>
-        <span><%= link "Edit", to: Routes.book_path(@conn, :edit, book), class: "btn btn-default btn-xs" %></span>
-        <span><%= link "Delete", to: Routes.book_path(@conn, :delete, book), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
-      </td>
-    </tr>
-<% end %>
-  </tbody>
-</table>
-
-
-</div>
-<span><%= link "Edit", to: Routes.author_path(@conn, :edit, @author) %></span>
-<span><%= link "Back", to: Routes.author_path(@conn, :index) %></span>
-
-<%= pagination_links @page, distance: 10, first: "<<", previous: "<", next: ">", last: ">>", ellipsis: false %>
-
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="author-show__works__table">
+        <div class="table">
+            <div class="table-caption">
+                Some of <%= @author.last_name %>'s works
+            </div>
+            <div class="table-head">
+                <h2 class="table-head__item">
+                    Image
+                </h2>
+                <h2 class="table-head__item">
+                    Isbn
+                </h2>
+                <h2 class="table-head__item">
+                    Title
+                </h2>
+                <h2 class="table-head__item">
+                    Year
+                </h2>
+                <h2 class="table-head__item">
+                    Pages
+                </h2>
+                <h2 class="table-head__item">
+                    Controls
+                </h2>
+            </div class="table-body">
+            <%= for book <- @page.entries do %>
+            <div class="table-body__row">
+                <div class="table-body__row-column">
+                    <img src="<%= book.image %>" height="360" width="233" </img> </div> <div
+                        class="table-body__row-column">
+                    <p><%= book.isbn %></p>
+                </div>
+                <div class="table-body__row-column">
+                    <p><%= book.title %></p>
+                </div>
+                <div class="table-body__row-column">
+                    <p><%= book.year %></p>
+                </div>
+                <div class="table-body__row-column">
+                    <p><%= book.pages %></p>
+                </div>
+                <div class="table-body__row-column table-body__row-buttons">
+                    <%= link "Show", to: Routes.book_path(@conn, :show, book), class: "btn__show" %>
+                    <%= link "Edit", to: Routes.book_path(@conn, :edit, book), class: "btn__edit" %>
+                    <%= link "Delete", to: Routes.book_path(@conn, :delete, book), method: :delete, data: [confirm: "Are you sure?"], class: "btn__delete" %>
+                </div>
+            </div>
+            <hr class="table-body__divider">
+            <% end %>
+        </div>
+        <div class="table-pagination">
+            <%= pagination_links @page, distance: 10, first: "<<", previous: "<", next: ">", last: ">>", ellipsis: false %>
+        </div>
+    </div>
+</section>
