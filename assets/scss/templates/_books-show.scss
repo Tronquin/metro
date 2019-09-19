@@ -1,0 +1,147 @@
+@import "../base/variables";
+@import "../base/queries";
+@import "../components/typography";
+@import "../base/fonts";
+
+.books-show {
+  background-color: #c4c4c486;
+  border-radius: 5px;
+  overflow: hidden;
+  padding: 3.5em;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  margin-bottom: 2em;
+  &__header {
+    display: grid;
+    grid-template-columns: 1fr 30%;
+    &-text {
+      font-family: "vollkorn_bold";
+      h1 {
+        color: $pink;
+        font-size: 2em;
+      }
+      h3 {
+        margin-top: 1em;
+        a {
+          font-size: 1.5em;
+          color: $black;
+          text-decoration: underline;
+        }
+      }
+    }
+
+    &-data {
+      display: flex;
+      flex-flow: column wrap;
+      &__text {
+        display: flex;
+        justify-content: space-between;
+        p {
+          font-family: "ibm_plex_bold";
+          color: $black;
+        }
+      }
+
+      hr {
+        margin: 1em 0;
+        width: 100%;
+        border-width: 2px;
+        border-color: $black;
+      }
+
+      &__digit {
+        display: flex;
+        justify-content: space-between;
+        p {
+          font-family: "ibm_plex_light";
+          color: $black;
+          span {
+            color: blue;
+          }
+        }
+      }
+    }
+  }
+
+  &__description {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1em;
+    &__image {
+      img {
+        border-radius: 5px;
+        margin-right: 2em;
+      }
+    }
+
+    &__text {
+      display: flex;
+      flex-flow: column wrap;
+      p {
+        font-family: "ibm_plex_light";
+      }
+
+      &-button {
+        margin-top: auto;
+        margin-left: auto;
+        a {
+          background-color: $pink;
+          padding: 0.5em 2em;
+          font-family: "ibm_plex_bold";
+          text-decoration: none;
+          text-align: end;
+          border-radius: 5px;
+          color: $black;
+        }
+      }
+    }
+  }
+
+  &__options {
+    margin-top: 3.5em;
+    a {
+      background-color: $pink;
+      padding: 0.5em 2em;
+      font-family: "ibm_plex_bold";
+      text-decoration: none;
+      text-align: end;
+      color: $black;
+      border-radius: 5px;
+      margin-right: 1em;
+      &:last-child {
+        background-color: $yellow;
+      }
+    }
+  }
+}
+
+@include mq-tablet {
+  .books-show {
+    margin: 1em;
+    padding: 2em;
+    &__header {
+      grid-template-rows: 1fr 1fr;
+      grid-template-columns: unset;
+      grid-gap: 2em;
+    }
+
+    &__description {
+      flex-flow: column wrap;
+      justify-content: center;
+      align-items: center;
+      &__image {
+        margin-bottom: 1.5em;
+      }
+      &__text {
+        &-button {
+          margin: 1.5em auto;
+        }
+      }
+    }
+
+    &__options {
+      margin: 1em auto;
+    }
+  }
+}

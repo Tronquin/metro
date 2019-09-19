@@ -1,11 +1,11 @@
 
-<section class="books">
-    <div class="books-filters">
-        <ul class="books-filters__list">
-            <li class="books-filters__list-item book-list__header">
+<section class="books-list">
+    <div class="books-list__filters">
+        <ul class="books-list__filters__list">
+            <li class="books-list__filters__list-item book-list__header">
                 <h2 class="header">Listing Books</h2>
             </li>
-            <li class="books-filters__list-item book-list__search">
+            <li class="books-list__filters__list-item book-list__search">
               <div class="search-input">
                   <%= form_for @conn, Routes.book_path(@conn, :index), [as: "search", method: :get], fn f -> %>
                   <%= select f, :search_by, ["title": "title", "summary": "summary", "author": "author"], selected: "title" %>
@@ -14,7 +14,7 @@
                   </label>
               </div>
             </li>
-            <li class="books-filters__list-item years book-list__slider">
+            <li class="books-list__filters__list-item years book-list__slider">
                <div class="years__info">
                  <label for="years">Years:</label>
                   <input type="text" name=search[years] id="search_years" readonly style="border:0; color:#D97398; font-weight:bold;">
@@ -22,7 +22,7 @@
                 <div class="years__slider" id="slider-range">
                 </div>
             </li>
-            <li class="books-filters__list-item book-list__genres">
+            <li class="books-list__filters__list-item book-list__genres">
                 <div class="genres">
                     <%=
                       vertical_checkboxes(
@@ -35,15 +35,15 @@
                     <%= error_tag f, :genres %>
                 </div>
             </li>
-            <div class="books-filters__list-item book-list__btn-new">
+            <div class="books-list__filters__list-item book-list__btn-new">
                   <button class="btn__new-book"><%= link "New Book", to: Routes.book_path(@conn, :new) %></button>
             </div>
-            <div class="books-filters__list-item btn__submit book-list__btn-submit">
+            <div class="books-list__filters__list-item btn__submit book-list__btn-submit">
             <%= submit "Submit" %>
             </div>
         </ul>
     </div>
-    <div class="books-table">
+    <div class="books-list-table">
         <div class="table">
         <div class="table-caption">
           Books
