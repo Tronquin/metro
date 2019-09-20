@@ -2,6 +2,30 @@
 @import "../base/variables";
 
 .btn {
+  &__edit {
+    background: $yellow;
+    border-radius: 5px;
+    padding: 0.5em 2em;
+    border: none;
+    outline: none;
+    text-transform: uppercase;
+    font-family: "ibm_plex_bold";
+    text-align: center;
+    color: $black;
+  }
+
+  &__back {
+    background: $pink;
+    border-radius: 5px;
+    padding: 0.5em 2em;
+    border: none;
+    outline: none;
+    text-transform: uppercase;
+    font-family: "ibm_plex_bold";
+    text-align: center;
+    color: $black;
+  }
+
   &__show {
     background: $pink;
     border-radius: 5px;

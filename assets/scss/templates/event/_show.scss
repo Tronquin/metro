@@ -1,0 +1,66 @@
+@import "../../base/variables";
+@import "../../base/queries";
+@import "../../components/typography";
+@import "../../base/fonts";
+
+.events-show {
+  background: $light-grey;
+  padding: 2em;
+  margin-bottom: 2em;
+  display: flex;
+  flex-flow: column wrap;
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1em;
+    h1,
+    h3 {
+      font-family: "vollkorn_bold";
+      color: $black;
+      font-size: 2em;
+      text-transform: uppercase;
+    }
+  }
+
+  &__extras {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1em;
+    img {
+      border-radius: 5px;
+    }
+    #event-calendar {
+      table {
+        background-color: $light-grey;
+        thead {
+          font-family: "ibm_plex_bold";
+          .jsCalendar-title-name {
+            text-transform: uppercase;
+          }
+        }
+
+        tbody {
+          font-family: "ibm_plex_light";
+        }
+        td {
+          text-align: center;
+        }
+      }
+    }
+  }
+
+  &__text {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1em;
+    p {
+      font-family: "ibm_plex_light";
+      color: $black;
+    }
+
+    h4 {
+      font-family: "ibm_plex_bold";
+      coor: $black;
+    }
+  }
+}
