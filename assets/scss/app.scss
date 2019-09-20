@@ -15,10 +15,11 @@
 @import "./components/tables";
 
 //Templates
-@import "./templates/event-index";
-@import "./templates/books-index";
-@import "./templates/books-show";
-@import "./templates/author-show";
+@import "./templates/page/index";
+@import "./templates/event/index";
+@import "./templates/books/index";
+@import "./templates/books/show";
+@import "./templates/author/show";
 
 //Layout
 @import "./layout/navbar";

@@ -62,7 +62,6 @@ config :phoenix, :stacktrace_depth, 20
 
 config :phoenix, :template_engines, leex: Phoenix.LiveView.Engine
 
-
 # Configure your database
 config :metro,
        Metro.Repo,

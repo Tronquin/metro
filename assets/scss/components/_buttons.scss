@@ -1,16 +1,60 @@
 @import "../base/fonts";
 @import "../base/variables";
 
-.base-button {
-    outline: none; 
-    border: none; 
-    width: 250px; 
+.btn {
+  &__show {
+    background: $pink;
+    border-radius: 5px;
+    padding: 0.5em 2em;
+    margin-left: auto;
+    border: none;
+    outline: none;
+    text-transform: uppercase;
+    font-family: "ibm_plex_bold";
+    text-align: center;
+    color: $black;
+    margin-bottom: 1em;
+  }
+
+  &__new-book {
+    outline: none;
+    border: none;
+    background: $yellow;
+    border-radius: 5px;
+    padding: 0.5em 2em;
+    a {
+      text-transform: uppercase;
+      font-family: "ibm_plex_bold";
+      text-align: center;
+      color: $black;
+    }
+  }
+
+  &__submit {
+    button {
+      background: $pink;
+      border-radius: 5px;
+      padding: 0.5em 2em;
+      border: none;
+      outline: none;
+      text-transform: uppercase;
+      font-family: "ibm_plex_bold";
+      text-align: center;
+      color: $black;
+    }
+  }
+
+  &__subscribe,
+  &__more-books {
+    border: none;
+    width: 250px;
     height: 50px;
-    border-radius: 5px; 
-    display: flex; 
-    justify-content: center; 
-    align-items: center; 
-    color: $black; 
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $black;
     background-color: $pink;
-    font-family: 'ibm_plex_bold', sans-serif;
+    font-family: "ibm_plex_bold", sans-serif;
+  }
 }

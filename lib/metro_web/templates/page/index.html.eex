@@ -1,36 +1,85 @@
-<div class="jumbotron">
-  <h2><%= gettext "Welcome to %{name}!", name: "Phoenix" %></h2>
-  <p class="lead">A productive web framework that<br />does not compromise speed and maintainability.</p>
-</div>
+<section class="index">
+    <div class="index-carousel">
+        <div class="index-carousel__events glide">
+            <div class="glide__track" data-glide-el="track">
+                <ul class="glide__slides">
+                <%= for event <- @events do %>
+                    <li class="glide__slide event" style="background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(0, 0, 0, 0.92)) , url(<%= event.background_image %>)">
+                        <div class="event__card">
+                            <h2><%= event.title %></h2>
+                            <h3>From <%= event.start_time %> To <%= event.end_time %></h3>
+                            <p>
+                                <%= event.description%>
+                            </p>
+                            <%= link "See More", to: Routes.event_path(@conn, :show, event), class: "btn__show" %>
+                        </div>
+                    </li>
+                <% end %>
+                </ul>
+            </div>
+            <div class="glide__arrows" data-glide-el="controls">
+                <button class="glide__arrow glide__arrow--left" data-glide-dir="<">prev</button>
+                <button class="glide__arrow glide__arrow--right" data-glide-dir=">">next</button>
+            </div>
+            <div class="glide__bullets" data-glide-el="controls[nav]">
+                <button class="glide__bullet" data-glide-dir="=0"></button>
+                <button class="glide__bullet" data-glide-dir="=1"></button>
+                <button class="glide__bullet" data-glide-dir="=2"></button>
+                <button class="glide__bullet" data-glide-dir="=3"></button>
+            </div>
+        </div>
+        <div class="index-carousel__books">
+            <div class="headtext">
+                <h2>New & Noteworthy</h2>
+                <%= link "More Books", to: Routes.book_path(@conn, :index), class: "btn__more-books" %>
+            </div>
+            <div class="books row">
+                <%= for book <- @books do %>
+                    <div class="books__placeholder">
+                        <img src="<%= book.image %>" />
+                    </div>
+                <%end%>
+            </div>
+        </div>
+    </div>
+    <div class="index-about">
+        <div class="about-container">
+            <div class="column">
+                <div class="row book-image">
+                <img src="<%= Routes.static_path(@conn, "/images/svg/logo.svg") %>" alt="book" />
+                </div>
+                <div class="row">
+                    <div class="text-card">
+                        <h3 class="header-paragraph-text">
+                        Curator
+                        </h3>
+                        <p class="paragraph-text ">
+                        On busy days, throngs of Library visitors can make the Irma and Paul Milstein Division of United States History, Local History and Genealogy feel like a mini Ellis Island. These patrons are not the "tired… poor… huddled masses yearning to breathe free"—the iconic immigrants.
+                        </p>    
+                        <a href="#" class="link-text">Learn More</a>
+                    </div>
+                    <div class="text-card">
+                        <h3 class="header-paragraph-text">
+                        Publisher
+                        </h3>
+                        <p class="paragraph-text ">
+                        On busy days, throngs of Library visitors can make the Irma and Paul Milstein Division of United States History, Local History and Genealogy feel like a mini Ellis Island. These patrons are not the "tired… poor… huddled masses yearning to breathe free"—the iconic immigrants.
+                        </p>    
+                        <a href="#" class="link-text">Learn More</a>
+                    </div>
+                    <div class="text-card">
+                        <h3 class="header-paragraph-text">
+                        Non-Profit
+                        </h3>
+                        <p class="paragraph-text ">
+                        On busy days, throngs of Library visitors can make the Irma and Paul Milstein Division of United States History, Local History and Genealogy feel like a mini Ellis Island. These patrons are not the "tired… poor… huddled masses yearning to breathe free"—the iconic immigrants.
+                        </p>    
+                        <a href="#" class="link-text">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-<div class="row marketing">
-  <div class="col-lg-6">
-    <h4>Resources</h4>
-    <ul>
-      <li>
-        <a href="http://phoenixframework.org/docs/overview">Guides</a>
-      </li>
-      <li>
-        <a href="https://hexdocs.pm/phoenix">Docs</a>
-      </li>
-      <li>
-        <a href="https://github.com/phoenixframework/phoenix">Source</a>
-      </li>
-    </ul>
-  </div>
+<section>
 
-  <div class="col-lg-6">
-    <h4>Help</h4>
-    <ul>
-      <li>
-        <a href="http://groups.google.com/group/phoenix-talk">Mailing list</a>
-      </li>
-      <li>
-        <a href="http://webchat.freenode.net/?channels=elixir-lang">#elixir-lang on freenode IRC</a>
-      </li>
-      <li>
-        <a href="https://twitter.com/elixirphoenix">@elixirphoenix</a>
-      </li>
-    </ul>
-  </div>
-</div>

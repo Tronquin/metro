@@ -14,7 +14,7 @@ $tableColumnCount: length($tableColumns);
   flex-flow: column wrap;
   padding: 1em;
   padding-top: 0;
-  background-color: $grey;
+  background-color: $light-grey;
   &-caption {
     font-family: "vollkorn_bold";
     color: $pink;
@@ -24,7 +24,6 @@ $tableColumnCount: length($tableColumns);
   }
 
   &-head {
-    background-color: $grey;
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     grid-template-areas: "image isbn title year pages controls";
@@ -48,7 +47,6 @@ $tableColumnCount: length($tableColumns);
 
   &-body {
     &__row {
-      background-color: $grey;
       display: grid;
       grid-template-columns: repeat(6, 1fr);
       grid-template-rows: 1fr 0.5em;
@@ -119,6 +117,10 @@ $tableColumnCount: length($tableColumns);
       &-buttons {
         display: flex;
         flex-flow: column wrap;
+        width: 100%;
+        & > a:first-child {
+          width: 100%;
+        }
       }
     }
   }

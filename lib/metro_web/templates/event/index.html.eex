@@ -1,113 +1,15 @@
-<section class="index">
-    <div class="index-carousel">
-        <div class="index-carousel__events glide">
-            <div class="glide__track" data-glide-el="track">
-                <ul class="glide__slides">
-                    <li class="glide__slide event-01">
-                        <div class="event__card">
-                            <h2>Event #1</h2>
-                            <h3>Event Title Lorem Ipsum</h3>
-                            <p>
-                            Government funding pays only a portion of the Library's operating expenses. We depend on support from generous individuals like you to help fund our collections, job search resources, access to the internet, literacy classes, children's story hours, and so much more. Your gift helps keep these vital services FREE for all New Yorkers.
-                            </p>
-                            <a class="arrow-next" to:"/events"></a>
-                        </div>
-                    </li>
-                    <li class="glide__slide event-02">
-                        <div class="event__card">
-                            <h2>Event #2</h2>
-                            <h3>Event Title Lorem Ipsum</h3>
-                            <p>
-                            Government funding pays only a portion of the Library's operating expenses. We depend on support from generous individuals like you to help fund our collections, job search resources, access to the internet, literacy classes, children's story hours, and so much more. Your gift helps keep these vital services FREE for all New Yorkers.
-                            </p>
-                            <a class="arrow-next" to:"/events"></a>
-                        </div>
-                    </li>
-                    <li class="glide__slide event-03">
-                        <div class="event__card">
-                            <h2>Event #3</h2>
-                            <h3>Event Title Lorem Ipsum</h3>
-                            <p>
-                            Government funding pays only a portion of the Library's operating expenses. We depend on support from generous individuals like you to help fund our collections, job search resources, access to the internet, literacy classes, children's story hours, and so much more. Your gift helps keep these vital services FREE for all New Yorkers.
-                            </p>
-                            <a class="arrow-next" to:"/events"></a>
-                        </div>
-                    </li>
-                    <li class="glide__slide event-04">
-                        <div class="event__card">
-                            <h2>Event #4</h2>
-                            <h3>Event Title Lorem Ipsum</h3>
-                            <p>
-                            Government funding pays only a portion of the Library's operating expenses. We depend on support from generous individuals like you to help fund our collections, job search resources, access to the internet, literacy classes, children's story hours, and so much more. Your gift helps keep these vital services FREE for all New Yorkers.
-                            </p>
-                            <a class="arrow-next" to:"/events"></a>
-                        </div>
-                    </li>
-                </ul>
+<section class="events">
+    <h1 class="events-caption">Event List</h1>
+    <ul class="events-lists">
+        <%= for event <- @events do %>
+            <div class="events-lists__item">
+                <h2><%= event.title %></h2>
+                <h6>From <%= event.start_time %> To <%= event.end_time %></h6>
+                <p>
+                    <%= event.description%>
+                </p>
+                <%= link "See More", to: Routes.event_path(@conn, :show, event), class: "btn__show" %>
             </div>
-            <div class="glide__arrows" data-glide-el="controls">
-                <button class="glide__arrow glide__arrow--left" data-glide-dir="<">prev</button>
-                <button class="glide__arrow glide__arrow--right" data-glide-dir=">">next</button>
-            </div>
-            <div class="glide__bullets" data-glide-el="controls[nav]">
-                <button class="glide__bullet" data-glide-dir="=0"></button>
-                <button class="glide__bullet" data-glide-dir="=1"></button>
-                <button class="glide__bullet" data-glide-dir="=2"></button>
-                <button class="glide__bullet" data-glide-dir="=3"></button>
-            </div>
-        </div>
-        <div class="index-carousel__books">
-            <div class="headtext">
-                <h2>New & Noteworthy</h2>
-                <button class="base-button">More Books</button>
-            </div>
-            <div class="books row">
-                <%= for book <- @books do %>
-                    <div class="books__placeholder">
-                        <img src="<%= book.image %>" />
-                    </div>
-                <%end%>
-            </div>
-        </div>
-    </div>
-    <div class="index-about">
-        <div class="about-container">
-            <div class="column">
-                <div class="row book-image">
-                <img src="<%= Routes.static_path(@conn, "/images/svg/logo.svg") %>" alt="book" />
-                </div>
-                <div class="row">
-                    <div class="text-card">
-                        <h3 class="header-paragraph-text">
-                        Curator
-                        </h3>
-                        <p class="paragraph-text ">
-                        On busy days, throngs of Library visitors can make the Irma and Paul Milstein Division of United States History, Local History and Genealogy feel like a mini Ellis Island. These patrons are not the "tired… poor… huddled masses yearning to breathe free"—the iconic immigrants.
-                        </p>    
-                        <a href="#" class="link-text">Learn More</a>
-                    </div>
-                    <div class="text-card">
-                        <h3 class="header-paragraph-text">
-                        Publisher
-                        </h3>
-                        <p class="paragraph-text ">
-                        On busy days, throngs of Library visitors can make the Irma and Paul Milstein Division of United States History, Local History and Genealogy feel like a mini Ellis Island. These patrons are not the "tired… poor… huddled masses yearning to breathe free"—the iconic immigrants.
-                        </p>    
-                        <a href="#" class="link-text">Learn More</a>
-                    </div>
-                    <div class="text-card">
-                        <h3 class="header-paragraph-text">
-                        Non-Profit
-                        </h3>
-                        <p class="paragraph-text ">
-                        On busy days, throngs of Library visitors can make the Irma and Paul Milstein Division of United States History, Local History and Genealogy feel like a mini Ellis Island. These patrons are not the "tired… poor… huddled masses yearning to breathe free"—the iconic immigrants.
-                        </p>    
-                        <a href="#" class="link-text">Learn More</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-<section>
-
+        <% end %>
+    </ul>
+</section>

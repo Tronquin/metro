@@ -3,14 +3,17 @@ defmodule Metro.Repo.Migrations.CreateEvents do
 
   def change do
     create table(:events) do
-      add :description, :text
-      add :images, :string
-      add :start_time, :naive_datetime
-      add :end_time, :naive_datetime
-      add :room_id, references(:rooms, on_delete: :nothing)
+      add(:title, :text)
+      add(:description, :text)
+      add(:images, :string)
+      add(:background_image, :string)
+      add(:start_time, :naive_datetime)
+      add(:end_time, :naive_datetime)
+      add(:room_id, references(:rooms, on_delete: :nothing))
 
       timestamps()
     end
-    create index(:events, [:room_id])
+
+    create(index(:events, [:room_id]))
   end
 end

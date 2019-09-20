@@ -9,6 +9,11 @@ defmodule MetroWeb.EventController do
     books = Enum.take(Location.list_books(), 4)
     {head, events} = List.pop_at(events, 0)
     render(conn, "index.html", books: books, events: events, head: head)
+    # query_params = from(e in Event, where: e.year >= ^b_year and b.year <= ^e_year)
+
+    # pagenumber = conn.params["page"] || 1
+
+    # page = Metro.Repo.paginate(query_params, page: pagenumber)
   end
 
   def new(conn, _params) do

@@ -40,7 +40,7 @@
               <div class="column contact-input">
                 <div class="row">
                     <input type="email" name="subscribe" id="subscribe" placeholder="JohnDoe@gmail.com">
-                    <button class="base-button">Subscribe</button>
+                    <button class="btn__subscribe">Subscribe</button>
                 </div>
               </div>
           </div>

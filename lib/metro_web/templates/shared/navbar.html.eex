@@ -12,7 +12,7 @@
               <input type="text"> <img src="<%= Routes.static_path(@conn, "/images/svg/search.svg") %>" />
             </div>
           </li>
-          <li><%= link "Home", to: Routes.event_path(@conn, :index) %></li>
+          <li><%= link "Home", to: Routes.page_path(@conn, :index) %></li>
           <%= if Coherence.current_user_name(@conn) do %>
             <%= if @conn.assigns.current_user.is_librarian? do %>
               <li>
