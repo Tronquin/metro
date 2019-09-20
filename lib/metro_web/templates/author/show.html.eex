@@ -64,8 +64,8 @@
                     <%= link "Edit", to: Routes.book_path(@conn, :edit, book), class: "btn__edit" %>
                     <%= link "Delete", to: Routes.book_path(@conn, :delete, book), method: :delete, data: [confirm: "Are you sure?"], class: "btn__delete" %>
                 </div>
+                <hr class="table-body__row-divider">
             </div>
-            <hr class="table-body__divider">
             <% end %>
         </div>
         <div class="table-pagination">

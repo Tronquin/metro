@@ -3,45 +3,45 @@
 @import "../base/queries";
 
 .wrapper {
-    margin-right: auto;
-    margin-left:  auto;
-    max-width: 1260px;
-    padding-right: 10px;
-    padding-left:  10px;
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 1450px;
+  padding-right: 10px;
+  padding-left: 10px;
 }
 
 @include wrapper-unset {
-    .wrapper {
-        margin: unset; 
-        max-width: unset; 
-        padding: unset;
-    }
+  .wrapper {
+    margin: unset;
+    max-width: unset;
+    padding: unset;
+  }
 
-    section {
-        padding: 0 1em;
-    }
+  section {
+    padding: 0 1em;
+  }
 }
 
 .row {
-    display: flex;
+  display: flex;
 }
 
 .column {
-    display: flex; 
-    flex-flow: column wrap; 
+  display: flex;
+  flex-flow: column wrap;
 }
 
 .row {
-    &::after {
-        display: unset; 
-        content: unset; 
-    }
-    &::before {
-        display: unset; 
-        content: unset; 
-    }
+  &::after {
+    display: unset;
+    content: unset;
+  }
+  &::before {
+    display: unset;
+    content: unset;
+  }
 }
 
 .row {
-    margin: 0; 
+  margin: 0;
 }

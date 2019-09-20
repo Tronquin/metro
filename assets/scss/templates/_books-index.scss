@@ -5,12 +5,12 @@
 
 .books-list {
   display: grid;
-  grid-template-columns: 1fr 3fr;
+  grid-template-columns: 360px 1fr;
   grid-gap: 1em;
   grid-template-areas: "filters table";
   &__filters {
     grid-area: filters;
-    padding: 1em 2em;
+    padding: 1em 1.5em;
     background: $black;
     border-radius: 5px;
     height: 700px;

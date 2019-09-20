@@ -3,8 +3,12 @@
 @import "../components/typography";
 @import "../base/fonts";
 
+$tableColumns: ("image", "isbn", "title", "year", "pages", "controls");
+$tableColumnsWidth: ("233px", "150px", "150px", "150px", "150px", "150px");
+$tableColumnCount: length($tableColumns);
+
 .table {
-  overflow: hidden;
+  overflow: unset;
   border-radius: 5px;
   display: flex;
   flex-flow: column wrap;
@@ -23,17 +27,21 @@
     background-color: $grey;
     display: grid;
     grid-template-columns: repeat(6, 1fr);
+    grid-template-areas: "image isbn title year pages controls";
+    grid-gap: 1em;
     padding: 0.5em;
     border-bottom: 2px solid $black;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
     &__item {
-      margin-right: 0.5em;
       font-family: "ibm_plex_bold";
       color: $black;
       text-transform: uppercase;
-      &:first-child {
-        width: 233px;
+      @for $i from 1 to $tableColumnCount {
+        &:nth-child(#{$i}) {
+          width: unquote(nth($tableColumnsWidth, $i));
+          grid-area: unquote(nth($tableColumns, $i));
+        }
       }
     }
   }
@@ -43,12 +51,26 @@
       background-color: $grey;
       display: grid;
       grid-template-columns: repeat(6, 1fr);
+      grid-template-rows: 1fr 0.5em;
+      grid-template-areas:
+        "image isbn title year pages controls"
+        "divider divider divider divider divider divider";
+      grid-gap: 1em;
       padding: 0.5em;
       &:last-child {
         border-bottom-left-radius: 5px;
         border-bottom-right-radius: 5px;
+        hr {
+          display: none;
+        }
       }
       &-column {
+        @for $i from 1 to $tableColumnCount {
+          &:nth-child(#{$i}) {
+            width: unquote(nth($tableColumnsWidth, $i));
+            grid-area: unquote(nth($tableColumns, $i));
+          }
+        }
         padding-right: 0.5em;
         font-size: 0.9em;
         img {
@@ -87,21 +109,26 @@
           }
         }
       }
-
+      &-divider {
+        grid-area: divider;
+        width: 100%;
+        border-width: 2px;
+        border-color: black;
+        margin: 0.5em 0;
+      }
       &-buttons {
         display: flex;
         flex-flow: column wrap;
       }
     }
-
-    &__divider {
-      width: 100%;
-      border-width: 2px;
-      border-color: black;
-      margin: 0.5em 0;
-    }
   }
 
   &-pagination {
+  }
+}
+
+@include mq-tablet {
+  body {
+    overflow: scroll;
   }
 }

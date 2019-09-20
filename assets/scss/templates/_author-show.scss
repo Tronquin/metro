@@ -23,7 +23,7 @@
           font-size: 2em;
         }
         h3 {
-          margin-top: 1em;
+          margin-top: 0.5em;
           font-size: 1.5em;
           color: $black;
           text-decoration: underline;
@@ -119,29 +119,35 @@
 @include mq-tablet {
   .author-show {
     margin: 1em;
-    padding: 2em;
-    &__header {
-      grid-template-rows: 1fr 1fr;
-      grid-template-columns: unset;
-      grid-gap: 2em;
-    }
-
-    &__description {
-      flex-flow: column wrap;
-      justify-content: center;
-      align-items: center;
-      &__image {
-        margin-bottom: 1.5em;
+    padding: 0;
+    &__about {
+      padding: 1em;
+      &-header {
+        grid-template-rows: 1fr;
+        grid-template-columns: unset;
+        grid-gap: 2em;
       }
-      &__text {
-        &-button {
-          margin: 1.5em auto;
+
+      &-description {
+        flex-flow: column wrap;
+        justify-content: center;
+        align-items: center;
+        &__image {
+          margin-bottom: 1.5em;
+          img {
+            margin-right: 0;
+          }
+        }
+        &__text {
+          &-button {
+            margin: 1.5em auto;
+          }
         }
       }
-    }
 
-    &__options {
-      margin: 1em auto;
+      &-options {
+        margin: 1em auto;
+      }
     }
   }
 }
