@@ -66,7 +66,7 @@ config :phoenix, :template_engines, leex: Phoenix.LiveView.Engine
 config :metro,
        Metro.Repo,
        adapter: Ecto.Adapters.Postgres,
-       username: "postgres",
+       username: "francisco",
        password: "secret",
        database: "metro_dev",
        hostname: "localhost",
