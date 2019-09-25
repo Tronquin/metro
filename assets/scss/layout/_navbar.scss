@@ -1,6 +1,10 @@
 @import "../base/variables";
 @import "../base/queries";
 
+.open-dropdown {
+  display: flex !important;
+}
+
 .navigation-bar {
   justify-content: space-between;
   align-items: center;
@@ -73,14 +77,15 @@
     clip-path: circle(0px at top);
     transition: all ease-in-out 500ms;
     &__links {
-      li {
+      width: 100%;
+      &-item {
         font-family: "ibm_plex_light";
         margin: 0 1em;
         &:first-child {
           margin-left: 0;
         }
         &:last-child {
-          margin-right: 0;
+          margin-left: 0;
           font-family: "ibm_plex_bold";
         }
         a {
@@ -111,6 +116,37 @@
             right: 15px;
             cursor: pointer;
             z-index: 99999;
+          }
+        }
+
+        &__dropdown {
+          &-toggle {
+            text-transform: capitalize;
+            font-family: "ibm_plex_bold";
+            cursor: pointer;
+            &::after {
+              content: "⌄";
+              position: relative;
+              bottom: 4px;
+              right: 5px;
+            }
+          }
+
+          &-menu {
+            background-color: $light-grey;
+            display: none;
+            justify-content: center;
+            flex-flow: column wrap;
+            padding: 0.5em;
+            right: 0;
+            margin-top: 0.5em;
+            li {
+              margin: 0.5em 0;
+              a {
+                font-family: "ibm_plex_light";
+                text-transform: capitalize;
+              }
+            }
           }
         }
       }
@@ -196,6 +232,17 @@
       transition: none;
       &__links {
         display: flex;
+        justify-content: center;
+        align-items: center;
+        &-item {
+          &__dropdown {
+            &-menu {
+              position: absolute;
+              border-radius: 5px;
+              right: 70px;
+            }
+          }
+        }
       }
     }
   }

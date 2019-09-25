@@ -64,6 +64,30 @@
         logo.classList.toggle('logo-open');
       }
 
+      const dropdownHead = document.querySelector('.nav__links-item__dropdown-toggle');
+      const dropdownBody = document.querySelector('.nav__links-item__dropdown-menu');
+      const dropdownLink = document.querySelector('.nav__links-item__dropdown-menu-item');
+      dropdownHead.onclick = () => {
+        dropdownBody.classList.toggle('open-dropdown');
+        notificationsBody.classList.remove('open-dropdown');
+      }
+
+      dropdownLink.onclick = () => {
+        dropdownBody.classList.remove('open-dropdown');
+      }
+
+      const notifications = document.querySelector('.notifications-head');
+      const notificationsBody = document.querySelector('.notifications-dropdown');
+      const notification = document.querySelector('.notifications-dropdown__list-item');
+      notifications.onclick = () => {
+        notificationsBody.classList.toggle('open-dropdown');
+        dropdownBody.classList.remove('open-dropdown');
+      }
+
+      notification.onclick = () => {
+        notificationBody.classList.remove('open-dropdown');
+      }
+
       $(document).ready(function () {
 
             // ANIMATEDLY DISPLAY THE NOTIFICATION COUNTER.

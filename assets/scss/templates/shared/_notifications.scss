@@ -1,0 +1,70 @@
+@import "../../base/variables";
+@import "../../base/queries";
+@import "../../components/typography";
+@import "../../base/fonts";
+
+.notifications {
+  &-head {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column;
+    img {
+      width: 2em;
+    }
+    p {
+      top: 0;
+      right: 0;
+    }
+  }
+  &-dropdown {
+    background-color: $light-grey;
+    display: none;
+    justify-content: center;
+    flex-flow: column wrap;
+    padding: 0.5em;
+    border-radius: 5px;
+    top: 0;
+    right: 0;
+    position: relative;
+    margin-top: 0.5em;
+    &__list {
+      &-item {
+        a {
+          font-family: "ibm_plex_light";
+          color: $black;
+        }
+      }
+      .unread {
+      }
+
+      .seen {
+      }
+    }
+  }
+}
+
+@include mq-mobile {
+  .notifications {
+    &-head {
+      display: block;
+      cursor: pointer;
+      p {
+        font-family: "ibm_plex_bold";
+        background-color: $pink;
+        position: absolute;
+        top: -5px;
+        right: 8px;
+        color: $black;
+        padding: 0.1em 0.2em;
+        border-radius: 5px;
+      }
+    }
+    &-dropdown {
+      right: 0;
+      top: 30px;
+      margin-top: 0;
+      position: absolute;
+    }
+  }
+}
