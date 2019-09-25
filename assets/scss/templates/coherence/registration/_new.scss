@@ -1,0 +1,64 @@
+@import "../../../base/variables";
+@import "../../../base/queries";
+@import "../../../components/typography";
+@import "../../../base/fonts";
+
+.register {
+  background-color: $grey;
+  padding: 3em 25%;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  margin-bottom: 1.5em;
+  border-radius: 5px;
+  h3 {
+    font-family: "vollkorn_bold";
+    color: $pink;
+    margin-bottom: 1em;
+    font-size: 2.5em;
+  }
+  form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column wrap;
+    .form-group {
+      width: 100%;
+      margin-bottom: 2em;
+
+      &:last-child {
+        margin-top: 1em;
+        margin-bottom: 0;
+      }
+      label {
+        font-family: "ibm_plex_bold";
+        color: $black;
+        margin-bottom: 0.5em;
+      }
+
+      input[type="text"] {
+        font-family: "ibm_plex_light";
+        color: $black;
+      }
+    }
+  }
+}
+
+@include mq-mobile-small {
+  .register {
+    margin: 1em;
+    padding: 3em 20%;
+    form {
+      .form-group {
+        &:last-child {
+          display: flex;
+          flex-flow: column-reverse wrap;
+          .btn__register {
+            margin-bottom: 1em;
+            margin-left: 0;
+          }
+        }
+      }
+    }
+  }
+}

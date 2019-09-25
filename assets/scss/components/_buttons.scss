@@ -2,7 +2,8 @@
 @import "../base/variables";
 
 .btn {
-  &__edit {
+  &__edit,
+  &__cancel {
     background: $yellow;
     border-radius: 5px;
     padding: 0.5em 2em;
@@ -24,6 +25,22 @@
     font-family: "ibm_plex_bold";
     text-align: center;
     color: $black;
+  }
+
+  &__register,
+  &__login {
+    padding: 0.7em 2em;
+    background: $pink;
+    border-radius: 5px;
+    margin-left: auto;
+    border: none;
+    outline: none;
+    text-transform: uppercase;
+    font-family: "ibm_plex_bold";
+    text-align: center;
+    color: $black;
+    margin-bottom: 1em;
+    margin-left: 1em;
   }
 
   &__show {

@@ -1,0 +1,66 @@
+@import "../../../base/variables";
+@import "../../../base/queries";
+@import "../../../components/typography";
+@import "../../../base/fonts";
+
+.login {
+  background-color: $grey;
+  padding: 3em 25%;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  margin-bottom: 1.5em;
+  border-radius: 5px;
+  h3 {
+    font-family: "vollkorn_bold";
+    color: $pink;
+    margin-bottom: 1em;
+    font-size: 2.5em;
+  }
+  form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column wrap;
+    .form-group {
+      width: 100%;
+      margin-bottom: 2em;
+    }
+    label {
+      font-family: "ibm_plex_bold";
+      color: $black;
+      margin-bottom: 0.5em;
+    }
+
+    input[type="text"] {
+      font-family: "ibm_plex_light";
+      color: $black;
+    }
+  }
+
+  .forgot {
+    a {
+      font-family: "ibm_plex_light";
+      color: $black;
+      text-decoration: underline;
+      font-style: italic;
+    }
+  }
+}
+
+@include mq-mobile-small {
+  .login {
+    margin: 1em;
+    padding: 3em 20%;
+    form {
+      .buttons {
+        display: flex;
+        flex-flow: column-reverse wrap;
+        .btn__login {
+          margin-bottom: 1em;
+          margin-left: 0;
+        }
+      }
+    }
+  }
+}
