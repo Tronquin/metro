@@ -3,6 +3,48 @@
 @import "../css/phoenix.css";
 @import "../scss/base/fonts";
 
+<<<<<<< HEAD
 body, html {
     font-family: 'ibm_plex_monoregular', sans-serif;
 }
+=======
+//Base
+@import "./base/fonts";
+@import "./base/variables";
+@import "./base/queries";
+@import "./base/reset";
+
+//Components
+@import "./components/buttons";
+@import "./components/grid";
+@import "./components/typography";
+@import "./components/tables";
+@import "./components/inputs";
+
+//Templates
+@import "./templates/page/index";
+@import "./templates/event/index";
+@import "./templates/event/show";
+@import "./templates/books/index";
+@import "./templates/books/show";
+@import "./templates/author/show";
+@import "./templates/coherence/registration/new";
+@import "./templates/coherence/session/new";
+@import "./templates/shared/notifications";
+@import "./templates/work/index";
+@import "./templates/transit/index";
+@import "./templates/copy/index";
+@import "./templates/waitlist/index";
+@import "./templates/checkout/index";
+@import "./templates/user/show";
+@import "./templates/user/edit";
+@import "./templates/user/index";
+
+//Layout
+@import "./layout/navbar";
+@import "./layout/footer";
+
+//Glide Carousel
+@import "node_modules/@glidejs/glide/src/assets/sass/glide.core";
+@import "node_modules/@glidejs/glide/src/assets/sass/glide.theme";
+>>>>>>> Frontend

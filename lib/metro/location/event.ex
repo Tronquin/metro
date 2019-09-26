@@ -5,14 +5,15 @@ defmodule Metro.Location.Event do
   alias Metro.Location.Library
   alias Metro.Location.Room
 
-
   schema "events" do
-    field :start_time, :naive_datetime
-    field :end_time, :naive_datetime
-    field :description, :string
-    field :images, :string
+    field(:title, :string)
+    field(:start_time, :naive_datetime)
+    field(:end_time, :naive_datetime)
+    field(:description, :string)
+    field(:images, :string)
+    field(:background_image, :string)
 
-    belongs_to :room, Room, foreign_key: :room_id
+    belongs_to(:room, Room, foreign_key: :room_id)
 
     timestamps()
   end
@@ -20,8 +21,24 @@ defmodule Metro.Location.Event do
   @doc false
   def changeset(event, attrs) do
     event
-    |> cast(attrs, [:description, :images, :start_time, :end_time, :room_id])
+    |> cast(attrs, [
+      :title,
+      :description,
+      :images,
+      :background_image,
+      :start_time,
+      :end_time,
+      :room_id
+    ])
     |> foreign_key_constraint(:room_id)
-    |> validate_required([:description, :images, :start_time, :end_time, :room_id])
+    |> validate_required([
+      :title,
+      :description,
+      :images,
+      :background_image,
+      :start_time,
+      :end_time,
+      :room_id
+    ])
   end
 end

@@ -1,0 +1,53 @@
+@import "../../base/variables";
+@import "../../base/queries";
+@import "../../components/typography";
+@import "../../base/fonts";
+
+.profile {
+  background: $light-grey;
+  padding: 1em;
+  margin-bottom: 1em;
+  &-user {
+    &__info {
+      display: flex;
+      flex-flow: column wrap;
+      h1 {
+        font-family: "vollkorn_bold";
+        color: $pink;
+        font-size: 2.5em;
+        margin-bottom: 0.5em;
+      }
+      &__list {
+        display: flex;
+        justify-content: space-between;
+        &-item {
+          display: flex;
+          flex-flow: column wrap;
+          h3 {
+            font-family: "ibm_plex_bold";
+            color: $black;
+            font-size: 1.2em;
+          }
+          p {
+            font-family: "ibm_plex_light";
+            color: $black;
+          }
+        }
+      }
+    }
+    &__card {
+      margin: 1em 0;
+    }
+    &__options {
+      margin: 2.5em 0;
+      a {
+        &:nth-child(1) {
+          margin-right: 1em;
+        }
+      }
+    }
+    &__data {
+      margin: 1em 0;
+    }
+  }
+}

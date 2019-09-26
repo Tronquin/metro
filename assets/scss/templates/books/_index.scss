@@ -1,0 +1,264 @@
+@import "../../base/variables";
+@import "../../base/queries";
+@import "../../components/typography";
+@import "../../base/fonts";
+
+.books-list {
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  grid-gap: 1em;
+  grid-template-areas: "filters table";
+  &__filters {
+    grid-area: filters;
+    padding: 1em 1.5em;
+    background: $black;
+    border-radius: 5px;
+    height: 700px;
+    &__list {
+      display: flex;
+      flex-flow: column wrap;
+      &-item {
+        margin: 1em 0;
+        .header {
+          color: $pink;
+          font-family: "ibm_plex_bold";
+          text-transform: capitalize;
+          font-size: 2em;
+          border-bottom: none;
+          margin-bottom: 0;
+        }
+
+        .search-input {
+          form {
+            display: flex;
+            select,
+            input[type="text"] {
+              border-radius: 5px;
+              outline: none;
+              border: none;
+            }
+
+            input[type="text"] {
+              padding: 0.3em;
+              font-family: "ibm_plex_light";
+            }
+
+            select {
+              margin-right: 1em;
+              font-family: "ibm_plex_regular";
+              color: $black;
+              text-align: center;
+              option {
+                font-family: "ibm_plex_regular";
+                color: $black;
+              }
+            }
+          }
+        }
+
+        .years {
+          &__info {
+            label,
+            input[type="text"] {
+              position: relative;
+              bottom: 1em;
+              font-family: "ibm_plex_bold";
+            }
+            label {
+              color: $grey;
+              margin-right: 1em;
+            }
+            input[type="text"] {
+              background: transparent;
+            }
+          }
+          &__slider {
+            display: flex;
+            flex-flow: column-reverse wrap;
+            .ui-widget-header {
+              background: $grey !important;
+            }
+          }
+        }
+
+        .genres {
+          .form-group {
+            display: flex;
+            flex-flow: column wrap;
+            margin-bottom: 0 !important;
+            label {
+              font-family: "ibm_plex_bold";
+              color: $grey;
+              font-size: 1.2em;
+              margin-bottom: 1em;
+            }
+
+            & > div {
+              margin: 0.2em 0;
+            }
+
+            .formGroup {
+              &:last-child {
+                margin-bottom: 0;
+              }
+
+              input[type="checkbox"] {
+                margin-right: 1.5em;
+              }
+              font-family: "ibm_plex_regular";
+              color: $grey;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &-table {
+    grid-area: table;
+    display: flex;
+    flex-flow: column wrap;
+    overflow: hidden;
+    border-radius: 5px;
+    //For styles on the table itself, refer to the partial tables.scss in the scss folder
+  }
+}
+
+@include mq-tablet {
+  .books-list {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    font-size: 13px;
+    &__filters {
+      height: 400px;
+      margin-bottom: 2em;
+      &__list {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr;
+        grid-template-areas:
+          "header . ."
+          "search slider slider"
+          "genres genres genres"
+          "submit new .";
+        grid-gap: 1em;
+        .book-list {
+          &__header {
+            grid-area: header;
+            align-self: center;
+          }
+          &__search {
+            grid-area: search;
+            align-self: center;
+          }
+          &__slider {
+            grid-area: slider;
+            align-self: center;
+          }
+          &__genres {
+            grid-area: genres;
+            align-self: center;
+          }
+          &__btn-new {
+            grid-area: new;
+            align-self: center;
+          }
+          &__btn-submit {
+            grid-area: submit;
+            align-self: center;
+          }
+        }
+
+        &-item {
+          .genres {
+            .form-group {
+              flex-flow: row wrap;
+
+              & > div {
+                margin: 0.2em 1em;
+              }
+              label {
+                margin-right: 2em;
+                &::after {
+                  content: ":";
+                }
+
+                .formGroup {
+                  margin-right: 1em;
+                  input[type="checkbox"] {
+                    margin-right: 0.5em;
+                  }
+                }
+              }
+            }
+          }
+          .header {
+            h2 {
+              text-transform: uppercase;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@include mq-mobile-small {
+  .books-list {
+    font-size: 10px;
+    &__filters {
+      &__list {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+        grid-template-areas:
+          "header ."
+          "search ."
+          "slider slider"
+          "genres genres"
+          "submit new";
+        grid-gap: 1em;
+        .book-list {
+          &__header {
+            grid-area: header;
+            align-self: center;
+            padding: 0 !important;
+          }
+          &__search {
+            grid-area: search;
+            align-self: center;
+          }
+          &__slider {
+            grid-area: slider;
+            align-self: center;
+          }
+          &__genres {
+            grid-area: genres;
+            align-self: center;
+          }
+          &__btn-new {
+            grid-area: new;
+            align-self: center;
+          }
+          &__btn-submit {
+            grid-area: submit;
+            align-self: center;
+          }
+        }
+
+        &-item {
+          .genres {
+            .form-group {
+            }
+          }
+          .header {
+            h2 {
+              text-transform: uppercase;
+            }
+          }
+        }
+      }
+    }
+  }
+}

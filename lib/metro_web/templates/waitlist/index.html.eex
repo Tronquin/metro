@@ -1,48 +1,78 @@
-<h2>Listing Waitlist</h2>
-
-<%= form_for @conn, Routes.waitlist_path(@conn, :index), [as: "search", method: :get], fn f -> %>
-   <%= select f, :search_by, ["id": "id", "position": "position", "copy_id": "copy_id", "checkout_id": "checkout_id", "isbn_id": "isbn_id"], selected: "id" %>
-     <label>
-       <%= text_input f, :query %>
-     </label>
-  <%= submit "Submit" %>
-<% end %>
-
-<table class="table">
-  <thead>
-    <tr>
-      <th>Id</th>
-      <th>Position</th>
-      <th>Copy id</th>
-      <th>Checkout id</th>
-      <th>Isbn id</th>
-      <th>Inserted at</th>
-      <th>Updated at</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-<%= for waitlist <- @waitlists do %>
-    <tr>
-      <td><%= waitlist.id %></td>
-      <td><%= waitlist.position %></td>
-      <td><%= waitlist.copy_id %></td>
-      <td><%= waitlist.checkout_id %></td>
-      <td><%= waitlist.isbn_id %></td>
-      <td><%= waitlist.inserted_at %></td>
-      <td><%= waitlist.updated_at %></td>
-
-      <td class="text-right">
-        <span><%= link "Show", to: Routes.waitlist_path(@conn, :show, waitlist), class: "btn btn-default btn-xs" %></span>
-        <span><%= link "Edit", to: Routes.waitlist_path(@conn, :edit, waitlist), class: "btn btn-default btn-xs" %></span>
-        <span><%= link "Delete", to: Routes.waitlist_path(@conn, :delete, waitlist), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
-      </td>
-    </tr>
-<% end %>
-  </tbody>
-</table>
-
-<span><%= link "New Waitlist", to: Routes.waitlist_path(@conn, :new) %></span>
-
-<%= pagination_links @conn, @page, pagination_params(@conn.params) %>
-
+<section class="waitlist">
+  <div class="waitlist-options">
+    <%= link "New waitlist", to: Routes.waitlist_path(@conn, :new), class: "btn__new-waitlist" %>
+    <%= form_for @conn, Routes.waitlist_path(@conn, :index), [as: "search", method: :get], fn f -> %>
+      <%= select f, :search_by, ["id": "id", "position": "position", "copy_id": "copy_id", "checkout_id": "checkout_id", "isbn_id": "isbn_id"], selected: "id" %>
+        <label>
+          <%= text_input f, :query %>
+        </label>
+      <%= submit "Submit" %>
+    <% end %>
+  </div>
+  <div class="waitlist-table">
+    <div class="table">
+      <div class="table-caption">
+        Listing Waitlist
+      </div>
+      <div class="table-head">
+        <h2 class="table-head__item">
+          Id
+        </h2>
+        <h2 class="table-head__item">
+          Position
+        </h2>
+        <h2 class="table-head__item">
+          Copy Id
+        </h2>
+        <h2 class="table-head__item">
+          Checkout Id
+        </h2>
+        <h2 class="table-head__item">
+          ISBN Id
+        </h2>
+        <div class="table-head__item">
+          Inserted At
+        </div>
+        <div class="table-head__item">
+          Updated At
+        </div>
+      </div>
+      <div class="table-body">
+        <%= for waitlist <- @waitlists do %>
+        <div class="table-body__row">
+          <div class="table-body__row-column">
+            <p><%= waitlist.id %></p>
+          </div>
+          <div class="table-body__row-column">
+            <p><%= waitlist.position %></p>
+          </div>
+          <div class="table-body__row-column">
+            <p><%= waitlist.copy_id %></p>
+          </div>
+          <div class="table-body__row-column">
+            <p><%= waitlist.checkout_id %></p>
+          </div>
+          <div class="table-body__row-column">
+            <p><%= waitlist.isbn_id%></p>
+          </div>
+          <div class="table-body__row-column">
+            <p><%= waitlist.inserted_at %></p>
+          </div>
+          <div class="table-body__row-column">
+            <p><%= waitlist.updated_at %></p>
+          </div>
+          <div class="table-body__row-column table-body__row-buttons">
+            <%= link "Show", to: Routes.waitlist_path(@conn, :show, waitlist), class: "btn__show" %>
+            <%= link "Edit", to: Routes.waitlist_path(@conn, :edit, waitlist), class: "btn__edit" %>
+            <%= link "Delete", to: Routes.waitlist_path(@conn, :delete, waitlist), method: :delete, data: [confirm: "Are you sure?"], class: "btn__delete" %>
+          </div>
+          <hr class="table-body__row-divider">
+        </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="table-pagination">
+      <%= pagination_links @conn, @page, pagination_params(@conn.params) %>
+    </div>
+  </div>
+</section>

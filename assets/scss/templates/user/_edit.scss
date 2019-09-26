@@ -1,0 +1,15 @@
+@import "../../base/variables";
+@import "../../base/queries";
+@import "../../components/typography";
+@import "../../base/fonts";
+
+.user-edit {
+  h2 {
+    font-family: "vollkorn_bold";
+    color: $pink;
+  }
+
+  &__options {
+    margin: 2em 0;
+  }
+}

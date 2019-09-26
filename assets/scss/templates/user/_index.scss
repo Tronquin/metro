@@ -1,0 +1,10 @@
+@import "../../base/variables";
+@import "../../base/queries";
+@import "../../components/typography";
+@import "../../base/fonts";
+
+.user-list {
+  &__options {
+    margin: 2.5em 0;
+  }
+}

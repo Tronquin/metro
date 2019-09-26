@@ -1,0 +1,19 @@
+<div class="notifications">
+    <div class="notifications-head">
+        <img src="/images/svg/envelope.svg"/>
+        <p class="notifications-head__count"><%= @pending %></p>
+    </div>
+    <div class="notifications-dropdown">
+        <ul class="notifications-dropdown__list">
+            <%= for notif <- @unread do %>
+            <li class="notifications-dropdown__list-item unread"><%= notif.description %></li>
+            <% end %>
+            <%= for notif <- @seen do %>
+            <li class="notifications-dropdown__list-item seen"><%= notif.description %></li>
+            <% end %>
+            <li class="notifications-dropdown__list-item">
+                <%= link "See All", to: Routes.user_path(MetroWeb.Endpoint, :show, 2) , class: "btn__seeAll"%>
+            </li>
+        </ul>
+    </div>
+</div>

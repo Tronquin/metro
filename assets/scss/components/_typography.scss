@@ -1,0 +1,39 @@
+@import "../base/fonts";
+@import "../base/variables";
+
+.header-text {
+    font-family: 'vollkorn_bold', sans-serif; 
+    font-size: $xl-text;
+    color: $black; 
+}
+
+.small-header-text {
+    font-family: 'vollkorn_bold', sans-serif;
+    font-size: $md-text;
+    color: $black; 
+}
+
+.white-header-text {
+    font-family: 'vollkorn_bold', sans-serif; 
+    font-size: $xl-text; 
+    color: $white;
+}
+
+.paragraph-text {
+    font-family: 'ibm_plex_light', sans-serif; 
+    font-size: $md-text;
+    color: $black;  
+}
+
+.header-paragraph-text {
+    font-family: 'ibm_plex_bold', sans-serif; 
+    font-size: $md-text; 
+    color: $pink; 
+}
+
+.link-text {
+    font-family: 'ibm_plex_light', sans-serif; 
+    font-family: $md-text; 
+    color: $black; 
+    text-decoration: underline; 
+}

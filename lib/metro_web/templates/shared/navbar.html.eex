@@ -1,0 +1,49 @@
+<header class="navigation-bar row">
+  <div class="logo-container row">
+    <a href="/"> <img src="<%= Routes.static_path(@conn, "/images/svg/logo.svg") %>" /><span class="header-text">Phoenix Library</span></a>
+  </div>
+  <div class="search-bar-container">
+    <input type="text"> <img src="<%= Routes.static_path(@conn, "/images/svg/search.svg") %>" />
+  </div>
+  <nav role="navigation" class="nav">
+      <ul class="nav__links">
+          <li class="nav__links-item">        
+            <div class="search-bar-container-mobile">
+              <input type="text"> <img src="<%= Routes.static_path(@conn, "/images/svg/search.svg") %>" />
+            </div>
+          </li>
+          <li class="nav__links-item"><%= link "Home", to: Routes.page_path(@conn, :index) %></li>
+          <%= if Coherence.current_user_name(@conn) do %>
+            <%= if @conn.assigns.current_user.is_librarian? do %>
+              <li class="nav__links-item"><%= link "Books", to: Routes.book_path(@conn, :index) %></li>
+              <li class="nav__links-item"><%= link "Events", to: Routes.event_path(@conn, :index) %></li>
+              <li class="nav__links-item">
+                <div class="nav__links-item__dropdown">
+                      <a class="nav__links-item__dropdown-toggle" data-toggle="dropdown">
+                           <%= Coherence.current_user_name(@conn) %>
+                      </a>
+                      <ul class="nav__links-item__dropdown-menu">
+                          <li class="nav__links-item__dropdown-menu-item"><%= link "work", to: Routes.work_path(@conn, :index) %></li>
+                          <li class="nav__links-item__dropdown-menu-item"><%= link "transit", to: Routes.transit_path(@conn, :index) %></li>
+                          <li class="nav__links-item__dropdown-menu-item"><%= link "copies", to: Routes.copy_path(@conn, :index) %></li>
+                          <li class="nav__links-item__dropdown-menu-item"><%= link "waitlist", to: Routes.waitlist_path(@conn, :index) %></li>
+                          <li class="nav__links-item__dropdown-menu-item"><%= link "checkouts", to: Routes.checkout_path(@conn, :index) %></li>
+                          <li class="nav__links-item__dropdown-menu-item"><%= link "profile", to: Routes.user_path(@conn, :show, Coherence.current_user(@conn) ) %></li>
+                          <li class="nav__links-item__dropdown-menu-item"><%= link "log out", to: Routes.session_path(@conn, :delete), method: "delete" %></li>
+                      </ul>
+                </div>
+              </li>
+            <% end %>
+            <li class="nav__links-item"><%= live_render(@conn, MetroWeb.NotificationsLive, session: %{current_user: @conn.assigns.current_user.id})%></li>
+          <% else %>
+            <li class="nav__links-item"><%= link "Books", to: Routes.book_path(@conn, :index) %></li>
+            <li class="nav__links-item"><%= link "Events", to: Routes.event_path(@conn, :index) %></li>
+            <li class="nav__links-item"><%= link "Register", to: Routes.registration_path(@conn, :new) %></li>
+            <li class="nav__links-item"><%= link "Log In", to: Routes.session_path(@conn, :new) %></li>
+          <% end %>
+      </ul>
+  </nav>
+  <div class="menu-toggle">
+    <div class="menu-toggle__hamburger" />
+  </div>
+</header>

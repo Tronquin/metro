@@ -114,7 +114,7 @@ defmodule Metro.Order do
     case can_checkout?(user) do
       {:ok, "can checkout"} ->
         %Checkout{}
-        |> Checkout.changeset(Map.merge(%{"card_id" => user.card.id}, attrs))
+        |> Checkout.changeset(Map.merge(%{"card_id" => user.card.id, "user_id" => user.id}, attrs))
         |> Repo.insert()
       {:error, error} ->
         {:error, error}
@@ -131,6 +131,7 @@ defmodule Metro.Order do
                %{
                  "card_id" => user.card.id,
                  "copy_id" => copy.id,
+                  "user_id" => user.id
                  #             "checkout_date" => NaiveDateTime.utc_now(),
                  #             "due_date" => NaiveDateTime.add(NaiveDateTime.utc_now(), 2678400)
                }
@@ -190,20 +191,20 @@ defmodule Metro.Order do
       {:error, %Ecto.Changeset{}}
 
   """
-  def create_order(user, attr, book) do
+  def create_order(user, attr, copy) do
     order = Ecto.Multi.new
-            |> Ecto.Multi.run(:checkout, fn _, _ -> Metro.Order.create_checkout(user, attr, book) end)
+            |> Ecto.Multi.run(:checkout, fn _, _ -> Metro.Order.create_checkout(user, attr, copy) end)
             |> Ecto.Multi.run(
                  :copy,
-                 fn _, _ -> Metro.Location.update_copy(book, %{checked_out?: true}) end
+                 fn _, _ -> Metro.Location.update_copy(copy, %{checked_out?: true}) end
                )
             |> Ecto.Multi.run(
                  :transit,
-                 fn _, %{checkout: checkout} -> Metro.Order.create_transit(checkout, book) end
+                 fn _, %{checkout: checkout} -> Metro.Order.create_transit(checkout, copy) end
                )
             |> Ecto.Multi.run(
                  :reservation,
-                 fn _, %{transit: transit} -> Metro.Order.create_reservation(%{transit_id: transit.id}) end
+                 fn _, %{transit: transit} -> Metro.Order.create_reservation(%{transit_id: transit.id, user_id: user.id}) end
                )
             |> Repo.transaction()
   end

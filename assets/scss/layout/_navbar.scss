@@ -1,0 +1,280 @@
+@import "../base/variables";
+@import "../base/queries";
+
+.open-dropdown {
+  display: flex !important;
+}
+
+.navigation-bar {
+  justify-content: space-between;
+  align-items: center;
+  border: none;
+  position: relative;
+  z-index: 99999;
+  width: 100%;
+  padding: 2em 1em;
+  transition: background ease 0.8s;
+  &::after {
+    clear: both;
+    display: block;
+  }
+  &-open {
+    background: $pink;
+  }
+  .logo-container {
+    align-items: center;
+    a {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      span {
+        margin-left: 1em;
+        transition: color 0.3s ease;
+      }
+      img {
+        width: 50px;
+      }
+
+      &:hover {
+        text-decoration: none;
+        span {
+          color: $pink;
+        }
+      }
+    }
+    h2 {
+      margin-left: 0.5em;
+      font-size: 2em;
+    }
+  }
+  .search-bar-container {
+    position: relative;
+    margin: 0 auto;
+    display: none;
+    input {
+      border-radius: 5px;
+      outline: none;
+      border: 1px solid black;
+      padding: 5px 10px;
+      font-family: "ibm_plex_light";
+      width: 300px;
+    }
+    img {
+      width: 20px;
+      position: absolute;
+      top: 6px;
+      right: 15px;
+      cursor: pointer;
+      z-index: 99999;
+    }
+  }
+  .nav {
+    width: 100%;
+    position: absolute;
+    top: 99%;
+    right: 0%;
+    background: $pink;
+    clip-path: circle(0px at top);
+    transition: all ease-in-out 500ms;
+    &__links {
+      width: 100%;
+      &-item {
+        font-family: "ibm_plex_light";
+        margin: 0 1em;
+        &:first-child {
+          margin-left: 0;
+        }
+        &:last-child {
+          margin-left: 0;
+          font-family: "ibm_plex_bold";
+        }
+        a {
+          color: $black;
+          font-size: 1.2em;
+          transition: color 0.2s ease;
+          text-decoration: none;
+          &:hover {
+            color: $pink;
+          }
+        }
+
+        .search-bar-container-mobile {
+          position: relative;
+          margin: 0 auto;
+          input {
+            border-radius: 5px;
+            border: none;
+            outline: none;
+            padding: 5px 10px;
+            font-family: "ibm_plex_light";
+            width: 300px;
+          }
+          img {
+            width: 20px;
+            position: absolute;
+            top: 6px;
+            right: 15px;
+            cursor: pointer;
+            z-index: 99999;
+          }
+        }
+
+        &__dropdown {
+          &-toggle {
+            text-transform: capitalize;
+            font-family: "ibm_plex_bold";
+            cursor: pointer;
+            &::after {
+              content: "⌄";
+              position: relative;
+              bottom: 4px;
+              right: 5px;
+            }
+          }
+
+          &-menu {
+            background-color: $light-grey;
+            display: none;
+            justify-content: center;
+            flex-flow: column wrap;
+            padding: 0.5em;
+            right: 0;
+            margin-top: 0.5em;
+            li {
+              margin: 0.5em 0;
+              a {
+                font-family: "ibm_plex_light";
+                text-transform: capitalize;
+              }
+            }
+          }
+        }
+      }
+    }
+    &__open {
+      clip-path: circle(150% at top);
+
+      .nav__links {
+        display: flex;
+        flex-flow: column wrap;
+        align-items: center;
+        li {
+          &:last-child {
+            margin-left: 0;
+          }
+          margin-bottom: 2.5em;
+          margin-left: 1em;
+          a {
+            &:hover {
+              color: unset;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.menu-toggle {
+  right: 0.75em;
+  cursor: pointer;
+  &__hamburger,
+  &__hamburger::before,
+  &__hamburger::after {
+    content: "";
+    display: block;
+    background: $black;
+    height: 3px;
+    width: 1.75em;
+    border-radius: 3px;
+    transition: all ease-in-out 500ms;
+  }
+  &__hamburger::before {
+    transform: translateY(-8px);
+  }
+  &__hamburger::after {
+    transform: translateY(5px);
+  }
+  .open {
+    transform: rotate(45deg);
+    background: $black;
+  }
+  .open::before {
+    opacity: 0;
+    background: $black;
+  }
+  .open::after {
+    transform: rotate(-90deg) translate(3px);
+    background: $black;
+  }
+}
+
+//Media Queries
+
+@include mq-mobile {
+  .navigation-bar {
+    justify-content: center;
+    background: none;
+    padding: 2em 0;
+    .search-bar-container {
+      display: block;
+    }
+
+    .search-bar-container-mobile {
+      display: none;
+    }
+    .nav {
+      height: auto;
+      width: auto;
+      background: transparent;
+      position: relative;
+      clip-path: none;
+      transition: none;
+      &__links {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        &-item {
+          &__dropdown {
+            &-menu {
+              position: absolute;
+              border-radius: 5px;
+              right: 70px;
+            }
+          }
+        }
+      }
+    }
+  }
+  .menu-toggle {
+    display: none;
+  }
+}
+
+//remove normalize & bootstrap css
+.header,
+.nav {
+  &::after {
+    display: unset;
+    content: unset;
+  }
+  &::before {
+    display: unset;
+    content: unset;
+  }
+}
+
+.dropdown-toggle {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.open {
+  & > a {
+    &:hover {
+      background-color: unset !important;
+      border-color: unset !important;
+    }
+  }
+}

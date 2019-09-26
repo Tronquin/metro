@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
   <ol class="carousel-indicators">
     <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -23,3 +24,20 @@
 <script>
 $('.carousel').carousel()
 </script>
+=======
+<section class="events">
+    <h1 class="events-caption">Event List</h1>
+    <ul class="events-lists">
+        <%= for event <- @events do %>
+            <div class="events-lists__item">
+                <h2><%= event.title %></h2>
+                <h6>From <%= event.start_time %> To <%= event.end_time %></h6>
+                <p>
+                    <%= event.description%>
+                </p>
+                <%= link "See More", to: Routes.event_path(@conn, :show, event), class: "btn__show" %>
+            </div>
+        <% end %>
+    </ul>
+</section>
+>>>>>>> Frontend

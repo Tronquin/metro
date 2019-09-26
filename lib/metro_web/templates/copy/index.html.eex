@@ -1,46 +1,64 @@
-<h2>Listing Copies</h2>
-
-
-<%= form_for @conn, Routes.copy_path(@conn, :index), [as: "search", method: :get], fn f -> %>
-   <%= select f, :search_by, ["id": "id", "checked_out?": "checked_out?", "library_id": "library_id", "isbn_id": "isbn_id"], selected: "id" %>
-     <label>
-       <%= text_input f, :query %>
-     </label>
-  <%= submit "Submit" %>
-<% end %>
-
-
-<table class="table">
-  <thead>
-    <tr>
-      <th>Id</th>
-      <th>Checked out?</th>
-      <th>Library</th>
-      <th>ISBN</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-<%= for copy <- @copies do %>
-    <tr>
-      <td><%= copy.id %></td>
-      <td><%= copy.checked_out? %></td>
-      <td><%= copy.library_id %></td>
-      <td><%= copy.isbn_id %></td>
-
-      <td class="text-right">
-        <span><%= link "Show", to: Routes.copy_path(@conn, :show, copy), class: "btn btn-default btn-xs" %></span>
-        <span><%= link "Edit", to: Routes.copy_path(@conn, :edit, copy), class: "btn btn-default btn-xs" %></span>
-        <span><%= link "Delete", to: Routes.copy_path(@conn, :delete, copy), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
-      </td>
-    </tr>
-<% end %>
-  </tbody>
-</table>
-
-<div>
-    <span><%= link "New Copy", to: Routes.copy_path(@conn, :new) %></span>
-</div>
-
-<%= pagination_links @conn, @page, pagination_params(@conn.params) %>
+<section class="copy">
+  <div class="copy-options">
+    <%= link "New Copy", to: Routes.copy_path(@conn, :new), class: "btn__new-copy" %>
+    <%= form_for @conn, Routes.copy_path(@conn, :index), [as: "search", method: :get], fn f -> %>
+      <%= select f, :search_by, ["id": "id", "checked_out?": "checked_out?", "library_id": "library_id", "isbn_id": "isbn_id"], selected: "id" %>
+        <label>
+          <%= text_input f, :query %>
+        </label>
+      <%= submit "Submit" %>
+    <% end %>
+  </div>
+  <div class="copy-table">
+    <div class="table">
+      <div class="table-caption">
+        Listing Copies
+      </div>
+      <div class="table-head">
+        <h2 class="table-head__item">
+          Id
+        </h2>
+        <h2 class="table-head__item">
+          Checked Out?
+        </h2>
+        <h2 class="table-head__item">
+          Library
+        </h2>
+        <h2 class="table-head__item">
+          ISBN
+        </h2>
+        <div class="table-head__item">
+          Controls
+        </div>
+      </div>
+      <div class="table-body">
+        <%= for copy <- @copies do %>
+        <div class="table-body__row">
+          <div class="table-body__row-column">
+            <p><%= copy.id %></p>
+          </div>
+          <div class="table-body__row-column">
+            <p><%= copy.checked_out? %></p>
+          </div>
+          <div class="table-body__row-column">
+            <p><%= copy.library_id %></p>
+          </div>
+          <div class="table-body__row-column">
+            <p><%= copy.isbn_id %></p>
+          </div>
+          <div class="table-body__row-column table-body__row-buttons">
+            <%= link "Show", to: Routes.copy_path(@conn, :show, copy), class: "btn__show" %>
+            <%= link "Edit", to: Routes.copy_path(@conn, :edit, copy), class: "btn__edit" %>
+            <%= link "Delete", to: Routes.copy_path(@conn, :delete, copy), method: :delete, data: [confirm: "Are you sure?"], class: "btn__delete" %>
+          </div>
+          <hr class="table-body__row-divider">
+        </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="table-pagination">
+      <%= pagination_links @conn, @page, pagination_params(@conn.params) %>
+    </div>
+  </div>
+</section>
 
