@@ -1,37 +1,69 @@
-<h2>Listing Work</h2>
-
-
-<%= form_for @conn, Routes.work_path(@conn, :index), [as: "search", method: :get], fn f -> %>
-   <%= select f, :library, Enum.map(@libraries, &{&1.id, &1.id}), selected: "1" %>
-  <%= submit "Submit" %>
-<% end %>
-
-
-<table class="table">
-  <thead>
-    <tr>
-      <th>Library</th>
-      <th>Copy Id</th>
-      <th>Title</th>
-      <th>ISBN</th>
-      <th>Destination library</th>
-      <th>Checkout Date</th>
-      <th>Picked Up</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-<%= for copy <- @copies do %>
-    <tr>
-      <td><%= copy.library_id %></td>
-      <td><%= copy.id %></td>
-      <td><%= copy.title %></td>
-      <td><%= copy.isbn_id %></td>
-      <td><%= copy.destination %></td>
-      <td><%= copy.checkout_date %></td>
-      <td><input id = "<%= copy.id %>_picked_up?" type="checkbox" name="<%= copy.id %>_picked_up?" /></td>
-    </tr>
-<% end %>
-  </tbody>
-</table>
-
+<section class="work">
+  <div class="work-options">
+      <%= form_for @conn, Routes.work_path(@conn, :index), [as: "search", method: :get], fn f -> %>
+      <%= select f, :library, Enum.map(@libraries, &{&1.id, &1.id}), selected: "1" %>
+      <%= submit "Submit" %>
+      <% end %>
+  </div>
+  <div class="work-table">
+    <div class="table">
+      <div class="table-caption">
+        Listing Work 
+      </div>
+      <div class="table-head">
+        <h2 class="table-head__item">
+          Library
+        </h2>
+        <h2 class="table-head__item">
+          Copy Id
+        </h2>
+        <h2 class="table-head__item">
+          Title
+        </h2>
+        <h2 class="table-head__item">
+          ISBN
+        </h2>
+        <h2 class="table-head__item">
+          Destination Library
+        </h2>
+        <div class="table-head__item">
+          Checkout Date
+        </div>
+        <div class="table-head__item">
+          Picked Up
+        </div>
+      </div>
+      <div class="table-body">
+        <%= for copy <- @copies do %>
+          <div class="table-body__row">
+            <div class="table-body__row-column">
+              <p><%= copy.library_id %></p>
+            </div>
+            <div class="table-body__row-column">
+              <p><%= copy.id %></p>
+            </div>
+            <div class="table-body__row-column">
+              <p><%= copy.title %></p>
+            </div>
+            <div class="table-body__row-column">
+              <p><%= copy.isbn_id %></p>
+            </div>
+            <div class="table-body__row-column">
+              <p><%= copy.destination %></p>
+            </div>
+            <div class="table-body__row-column">
+              <p><%= copy.checkout_date %></p>
+            </div>
+            <div class="table-body__row-column">
+              <input id="<%= copy.id %>_picked_up?" type="checkbox" name="<%= copy.id %>_picked_up?" />
+            </div>
+            <hr class="table-body__row-divider">
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="table-pagination">
+      <%= pagination_links @conn, @page, pagination_params(@conn.params) %>
+    </div>
+  </div>
+</section>

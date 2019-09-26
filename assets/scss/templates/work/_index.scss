@@ -1,0 +1,42 @@
+@import "../../base/variables";
+@import "../../base/queries";
+@import "../../components/typography";
+@import "../../base/fonts";
+
+.work {
+  margin-bottom: 1.5em;
+
+  &-options {
+    margin-bottom: 1.5em;
+    form {
+      select {
+        margin-right: 1em;
+        background: $grey;
+        border: none;
+        outline: none;
+        border-radius: 5px;
+        padding: 0.25em;
+        font-family: "ibm_plex_bold";
+        option {
+          font-family: "ibm_plex_light";
+          background: $grey;
+        }
+      }
+
+      button {
+        background: $pink;
+        border-radius: 5px;
+        padding: 0.5em 2em;
+        border: none;
+        outline: none;
+        text-transform: uppercase;
+        font-family: "ibm_plex_bold";
+        text-align: center;
+        color: $black;
+      }
+    }
+  }
+
+  &-table {
+  }
+}

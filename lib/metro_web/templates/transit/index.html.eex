@@ -1,41 +1,67 @@
-<h2>Listing Transit</h2>
-
-
-<%= form_for @conn, Routes.transit_path(@conn, :index), [as: "search", method: :get], fn f -> %>
-   <%= select f, :library, Enum.map(@libraries, &{&1.id, &1.id}), selected: "1" %>
-  <%= submit "Submit" %>
-<% end %>
-
-<table class="table">
-  <thead>
-    <tr>
-      <th>Estimated arrival</th>
-      <th>Actual arrival</th>
-      <th>Library</th>
-      <th>Checkout</th>
-      <th>Copy</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-<%= for transit <- @transit do %>
-    <tr>
-      <td><%= transit.estimated_arrival %></td>
-      <td><%= transit.actual_arrival %></td>
-      <td><%= transit.destination %></td>
-      <td><%= transit.checkout_id %></td>
-      <td><%= transit.copy_id %></td>
-
-      <td class="text-right">
-        <span><%= link "Show", to: Routes.transit_path(@conn, :show, transit.id), class: "btn btn-default btn-xs" %></span>
-        <span><%= link "Edit", to: Routes.transit_path(@conn, :edit, transit.id), class: "btn btn-default btn-xs" %></span>
-        <span><%= link "Complete Transit", to: Routes.transit_path(@conn, :update, transit.id), method: :put, class: "btn btn-default btn-xs" %></span>
-        <span><%= link "Delete", to: Routes.transit_path(@conn, :delete, transit.id), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
-      </td>
-    </tr>
-<% end %>
-  </tbody>
-</table>
-
-<span><%= link "New Transit", to: Routes.transit_path(@conn, :new) %></span>
-
+<section class="transit">
+  <div class="transit-options">
+    <%= link "New Transit", to: Routes.transit_path(@conn, :new), class: "btn__new-transit" %>
+    <%= form_for @conn, Routes.transit_path(@conn, :index), [as: "search", method: :get], fn f -> %>
+    <%= select f, :library, Enum.map(@libraries, &{&1.id, &1.id}), selected: "1" %>
+    <%= submit "Submit" %>
+    <% end %>
+  </div>
+  <div class="transit-table">
+    <div class="table">
+      <div class="table-caption">
+        Listing transit
+      </div>
+      <div class="table-head">
+        <h2 class="table-head__item">
+          Estimated Arrival
+        </h2>
+        <h2 class="table-head__item">
+          Actual Arrival
+        </h2>
+        <h2 class="table-head__item">
+          Library
+        </h2>
+        <h2 class="table-head__item">
+          Checkout
+        </h2>
+        <h2 class="table-head__item">
+          Copy
+        </h2>
+        <div class="table-head__item">
+          Controls
+        </div>
+      </div>
+      <div class="table-body">
+        <%= for transit <- @transit do %>
+        <div class="table-body__row">
+          <div class="table-body__row-column">
+            <p><%= transit.estimated_arrival %></p>
+          </div>
+          <div class="table-body__row-column">
+            <p><%= transit.actual_arrival %></p>
+          </div>
+          <div class="table-body__row-column">
+            <p><%= transit.destination %></p>
+          </div>
+          <div class="table-body__row-column">
+            <p><%= transit.checkout_id %></p>
+          </div>
+          <div class="table-body__row-column">
+            <p><%= transit.transit_id %></p>
+          </div>
+          <div class="table-body__row-column table-body__row-buttons">
+            <%= link "Show", to: Routes.transit_path(@conn, :show, transit.id), class: "btn__show" %>
+            <%= link "Edit", to: Routes.transit_path(@conn, :edit, transit.id), class: "btn__edit" %>
+            <%= link "Complete Transit", to: Routes.transit_path(@conn, :update, transit.id), method: :put, class: "btn__update" %>
+            <%= link "Delete", to: Routes.transit_path(@conn, :delete, transit.id), method: :delete, data: [confirm: "Are you sure?"], class: "btn__delete" %>
+          </div>
+          <hr class="table-body__row-divider">
+        </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="table-pagination">
+      <%= pagination_links @conn, @page, pagination_params(@conn.params) %>
+    </div>
+  </div>
+</section>

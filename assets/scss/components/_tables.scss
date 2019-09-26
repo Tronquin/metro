@@ -3,10 +3,261 @@
 @import "../components/typography";
 @import "../base/fonts";
 
-$tableColumns: ("image", "isbn", "title", "year", "pages", "controls");
-$tableColumnsWidth: ("233px", "150px", "150px", "150px", "150px", "150px");
-$tableColumnCount: length($tableColumns);
+$bookTableColumns: ("image", "isbn", "title", "year", "pages", "controls");
+$bookTableColumnWidth: ("233px", "150px", "150px", "150px", "150px", "150px");
+$bookTableColumnCount: length($bookTableColumns);
+$bookGridAreas: "image isbn title year pages controls";
+$book: (
+  "columns": $bookTableColumns,
+  "columnWidth": $bookTableColumnWidth,
+  "columnCount": $bookTableColumnCount,
+  "gridAreas": $bookGridAreas
+);
 
+$workTableColumns: ("library", "copyId", "title", "isbn", "destrinationLibrary", "checkoutDate", "pickedUp");
+$workTableColumnWidth: ("150px", "150px", "150px", "150px", "150px", "150px", "150px");
+$workTableColumnCount: length($workTableColumns);
+$workGridAreas: "library copyId title isbn destrinationLibrary checkoutDate pickedUp";
+$work: (
+  "columns": $workTableColumns,
+  "columnWidth": $workTableColumnWidth,
+  "columnCount": $workTableColumnCount,
+  "gridAreas": $workGridAreas
+);
+
+$transitTableColumns: ("estimatedArrival", "actualArrival", "library", "checkout", "copy", "controls");
+$transitTableColumnWidth: ("150px", "150px", "150px", "150px", "150px", "150px");
+$transitTableColumnCount: length($transitTableColumns);
+$transitGridAreas: "estimatedArrival actualArrival library checkout copy controls";
+$transit: (
+  "columns": $transitTableColumns,
+  "columnWidth": $transitTableColumnWidth,
+  "columnCount": $transitTableColumnCount,
+  "gridAreas": $transitGridAreas
+);
+
+$copyTableColumns: ("copyId", "checkout", "library", "isbn", "controls");
+$copyTableColumnWidth: ("150px", "150px", "150px", "150px", "150px");
+$copyTableColumnCount: length($copyTableColumns);
+$copyGridAreas: "copyId checkout library isbn controls";
+$copy: (
+  "columns": $copyTableColumns,
+  "columnWidth": $copyTableColumnWidth,
+  "columnCount": $copyTableColumnCount,
+  "gridAreas": $copyGridAreas
+);
+
+$waitlistTableColumns: ("id", "position", "copyId", "checkoutId", "isbnId", "insertedAt", "updatedAt");
+$waitlistTableColumnWidth: ("150px", "150px", "150px", "150px", "150px", "150px", "150px");
+$waitlistTableColumnCount: length($waitlistTableColumns);
+$waitlistGridAreas: "id position copyId checkoutId isbnId insertedAt updatedAt";
+$waitlist: (
+  "columns": $waitlistTableColumns,
+  "columnWidth": $waitlistTableColumnWidth,
+  "columnCount": $waitlistTableColumnCount,
+  "gridAreas": $waitlistGridAreas
+);
+
+$checkoutTableColumns: (
+  "id",
+  "renewalsRemaining",
+  "checkoutDate",
+  "checkinDate",
+  "dueDate",
+  "card",
+  "copyId",
+  "isbn",
+  "library"
+);
+$checkoutTableColumnWidth: ("50px", "150px", "150px", "150px", "150px", "50px", "50px", "150px", "50px");
+$checkoutTableColumnCount: length($checkoutTableColumns);
+$checkoutGridAreas: "id renewalsRemaining checkoutDate checkinDate dueDate card copyId isbn library";
+$checkout: (
+  "columns": $checkoutTableColumns,
+  "columnWidth": $checkoutTableColumnWidth,
+  "columnCount": $checkoutTableColumnCount,
+  "gridAreas": $checkoutGridAreas
+);
+
+$profileCheckoutTableColumns: ("renewalsRemaining", "checkoutDate", "dueDate", "isbn");
+$profileCheckoutTableColumnWidth: ("150px", "150px", "150px", "150px");
+$profileCheckoutTableColumnCount: length($profileCheckoutTableColumns);
+$profileCheckoutGridAreas: "renewalsRemaining checkoutDate dueDate isbn";
+$profileCheckout: (
+  "columns": $profileCheckoutTableColumns,
+  "columnWidth": $profileCheckoutTableColumnWidth,
+  "columnCount": $profileCheckoutTableColumnCount,
+  "gridAreas": $profileCheckoutGridAreas
+);
+
+$profilePickupTableColumns: ("expirationDate", "library", "isbn");
+$profilePickupTableColumnWidth: ("150px", "150px", "150px");
+$profilePickupTableColumnCount: length($profilePickupTableColumns);
+$profilePickupGridAreas: "expirationDate library isbn";
+$profilePickup: (
+  "columns": $profilePickupTableColumns,
+  "columnWidth": $profilePickupTableColumnWidth,
+  "columnCount": $profilePickupTableColumnCount,
+  "gridAreas": $profilePickupGridAreas
+);
+
+$profileTransitTableColumns: ("estimatedArrival", "library", "isbn");
+$profileTransitTableColumnWidth: ("150px", "150px", "150px");
+$profileTransitTableColumnCount: length($profileTransitTableColumns);
+$profileTransitGridAreas: "estimatedArrival library isbn";
+$profileTransit: (
+  "columns": $profileTransitTableColumns,
+  "columnWidth": $profileTransitTableColumnWidth,
+  "columnCount": $profileTransitTableColumnCount,
+  "gridAreas": $profileTransitGridAreas
+);
+
+$profileWaitlistTableColumns: ("position", "isbn");
+$profileWaitlistTableColumnWidth: ("150px", "150px");
+$profileWaitlistTableColumnCount: length($profileWaitlistTableColumns);
+$profileWaitlistGridAreas: "position isbn";
+$profileWaitlist: (
+  "columns": $profileWaitlistTableColumns,
+  "columnWidth": $profileWaitlistTableColumnWidth,
+  "columnCount": $profileWaitlistTableColumnCount,
+  "gridAreas": $profileWaitlistGridAreas
+);
+
+$profilePrevCheckoutTableColumns: ("position", "isbn");
+$profilePrevCheckoutTableColumnWidth: ("150px", "150px");
+$profilePrevCheckoutTableColumnCount: length($profilePrevCheckoutTableColumns);
+$profilePrevCheckoutGridAreas: "position isbn";
+$profilePrevCheckout: (
+  "columns": $profilePrevCheckoutTableColumns,
+  "columnWidth": $profilePrevCheckoutTableColumnWidth,
+  "columnCount": $profilePrevCheckoutTableColumnCount,
+  "gridAreas": $profilePrevCheckoutGridAreas
+);
+
+$userListTableColumns: ("name", "email", "fines", "isLibrarian", "numOfBooksOut", "controls");
+$userListTableColumnWidth: ("150px", "150px", "150px", "150px", "150px", "150px");
+$userListTableColumnCount: length($userListTableColumns);
+$userListGridAreas: "name email fines isLibrarian numOfBooksOut controls";
+$userList: (
+  "columns": $userListTableColumns,
+  "columnWidth": $userListTableColumnWidth,
+  "columnCount": $userListTableColumnCount,
+  "gridAreas": $userListGridAreas
+);
+
+$tables: (
+  "book": $book,
+  "work": $work,
+  "transit": $transit,
+  "copy": $copy,
+  "waitlist": $waitlist,
+  "checkout": $checkout,
+  "profile-checkout": $profileCheckout,
+  "profile-pickup": $profilePickup,
+  "profile-transit": $profileTransit,
+  "profile-waitlist": $profileWaitlist,
+  "profile-prev-checkout": $profilePrevCheckout,
+  "user-list": $userList
+);
+$tableList: (
+  "book",
+  "work",
+  "transit",
+  "copy",
+  "waitlist",
+  "checkout",
+  "profile-checkout",
+  "profile-pickup",
+  "profile-transit",
+  "profile-waitlist",
+  "profile-prev-checkout",
+  "user-list"
+);
+
+/**
+* @return new string with the original repeated $n times
+*
+*/
+@mixin gridTemplateAreaConstructor($areas, $string, $n, $property) {
+  $temp: "";
+  @for $i from 1 through $n {
+    $temp: $temp + " " + $string;
+  }
+
+  #{$property}: $areas $temp;
+}
+
+@mixin tableGenerationEngine($tables, $tableList) {
+  $count: length($tableList);
+  @for $i from 1 to $count + 1 {
+    $currentMap: map-get(
+      $map: $tables,
+      $key: nth($tableList, $i)
+    );
+
+    $currentMapColumnCount: map-get(
+      $map: $currentMap,
+      $key: "columnCount"
+    );
+    $currentMapColumnWidth: map-get(
+      $map: $currentMap,
+      $key: "columnWidth"
+    );
+    $currentMapColumns: map-get(
+      $map: $currentMap,
+      $key: "columns"
+    );
+    $currentMapGridAreas: map-get(
+      $map: $currentMap,
+      $key: "gridAreas"
+    );
+    .#{unquote(nth($tableList, $i))}-table {
+      .table {
+        &-head {
+          grid-template-columns: repeat($currentMapColumnCount, 1fr);
+          @include gridTemplateAreaConstructor(
+            $currentMapGridAreas,
+            "divider",
+            $currentMapColumnCount,
+            grid-template-areas
+          );
+          &__item {
+            @for $i from 1 to $currentMapColumnCount {
+              &:nth-chuld(#{$i}) {
+                width: unquote(nth($currentMapColumnWidth, $i));
+                grid-area: unquote(nth($currentMapColumns, $i));
+              }
+            }
+          }
+        }
+
+        &-body {
+          &__row {
+            grid-template-columns: repeat($currentMapColumnCount, 1fr);
+            @include gridTemplateAreaConstructor(
+              $currentMapGridAreas,
+              "divider",
+              $currentMapColumnCount,
+              grid-template-areas
+            );
+            &__item {
+              @for $i from 1 to $currentMapColumnCount {
+                &:nth-chuld(#{$i}) {
+                  width: unquote(nth($currentMapColumnWidth, $i));
+                  grid-area: unquote(nth($currentMapColumns, $i));
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@include tableGenerationEngine($tables, $tableList);
+
+//general table styles
 .table {
   overflow: unset;
   border-radius: 5px;
@@ -20,13 +271,9 @@ $tableColumnCount: length($tableColumns);
     color: $pink;
     font-size: 1.5em;
     margin: 1em 0;
-    display: none;
   }
-
   &-head {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    grid-template-areas: "image isbn title year pages controls";
     grid-gap: 1em;
     padding: 0.5em;
     border-bottom: 2px solid $black;
@@ -36,23 +283,12 @@ $tableColumnCount: length($tableColumns);
       font-family: "ibm_plex_bold";
       color: $black;
       text-transform: uppercase;
-      @for $i from 1 to $tableColumnCount {
-        &:nth-child(#{$i}) {
-          width: unquote(nth($tableColumnsWidth, $i));
-          grid-area: unquote(nth($tableColumns, $i));
-        }
-      }
     }
   }
-
   &-body {
     &__row {
       display: grid;
-      grid-template-columns: repeat(6, 1fr);
       grid-template-rows: 1fr 0.5em;
-      grid-template-areas:
-        "image isbn title year pages controls"
-        "divider divider divider divider divider divider";
       grid-gap: 1em;
       padding: 0.5em;
       &:last-child {
@@ -63,12 +299,6 @@ $tableColumnCount: length($tableColumns);
         }
       }
       &-column {
-        @for $i from 1 to $tableColumnCount {
-          &:nth-child(#{$i}) {
-            width: unquote(nth($tableColumnsWidth, $i));
-            grid-area: unquote(nth($tableColumns, $i));
-          }
-        }
         padding-right: 0.5em;
         font-size: 0.9em;
         img {
@@ -124,8 +354,26 @@ $tableColumnCount: length($tableColumns);
       }
     }
   }
-
   &-pagination {
+    .pagination {
+      .active {
+        a {
+          font-family: "ibm_plex_bold";
+          background-color: $pink;
+          border-color: $pink;
+          color: $black;
+        }
+      }
+
+      li {
+        a {
+          font-family: "ibm_plex_bold";
+          background-color: $grey;
+          border-color: $grey;
+          color: $black;
+        }
+      }
+    }
   }
 }
 

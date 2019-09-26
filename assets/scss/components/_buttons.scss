@@ -3,7 +3,8 @@
 
 .btn {
   &__edit,
-  &__cancel {
+  &__cancel,
+  &__signup-card {
     background: $yellow;
     border-radius: 5px;
     padding: 0.5em 2em;
@@ -55,6 +56,22 @@
     text-align: center;
     color: $black;
     margin-bottom: 1em;
+  }
+
+  &__new-transit,
+  &__new-copy,
+  &__new-waitlist,
+  &__new-checkout,
+  &__new-user {
+    text-transform: uppercase;
+    font-family: "ibm_plex_bold";
+    text-align: center;
+    color: $black;
+    outline: none;
+    border: none;
+    background: $yellow;
+    border-radius: 5px;
+    padding: 0.5em 2em;
   }
 
   &__new-book {

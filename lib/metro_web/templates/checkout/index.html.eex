@@ -1,56 +1,93 @@
-<h2>Listing Checkouts</h2>
-
-<%= form_for @conn, Routes.checkout_path(@conn, :index), [as: "search", method: :get], fn f -> %>
-   <%= select f, :search_by, ["id": "id", "renewals_remaining": "renewals_remaining", "checkout_date": "checkout_date", "checkin_date": "checkin_date",
-   "due_date": "due_date", "card_id": "card_id", "copy_id": "copy_id", "isbn_id": "isbn_id", "library_id": "library_id"], selected: "id" %>
-     <label>
-       <%= text_input f, :query %>
-     </label>
-  <%= submit "Submit" %>
-<% end %>
-
-<table class="table">
-  <thead>
-    <tr>
-      <th>Id</th>
-      <th>Renewals remaining</th>
-      <th>Checkout date</th>
-      <th>Checkin date</th>
-      <th>Due date</th>
-      <th>Card</th>
-      <th>Copy Id</th>
-      <th>ISBN</th>
-      <th>Library</th>
-
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-<%= for checkout <- @checkouts do %>
-    <tr>
-      <td><%= checkout.id %></td>
-      <td><%= checkout.renewals_remaining %></td>
-      <td><%= checkout.checkout_date %></td>
-      <td><%= checkout.checkin_date %></td>
-      <td><%= checkout.due_date %></td>
-      <td><%= checkout.card_id %></td>
-      <td><%= checkout.copy_id %></td>
-      <td><%= checkout.isbn_id %></td>
-      <td><%= checkout.library_id %></td>
-
-      <td class="text-right">
-        <span><%= link "Show", to: Routes.checkout_path(@conn, :show, checkout), class: "btn btn-default btn-xs" %></span>
-        <span><%= link "Edit", to: Routes.checkout_path(@conn, :edit, checkout), class: "btn btn-default btn-xs" %></span>
-        <span><%= link "Check In", to: Routes.checkout_path(@conn, :update, checkout), method: :put, class: "btn btn-default btn-xs" %></span>
-        <span><%= link "Check Out", to: Routes.checkout_path(@conn, :process, checkout), method: :put, class: "btn btn-default btn-xs" %></span>
-        <span><%= link "Delete", to: Routes.checkout_path(@conn, :delete, checkout), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
-      </td>
-    </tr>
-<% end %>
-  </tbody>
-</table>
-
-<span><%= link "New Checkout", to: Routes.checkout_path(@conn, :new) %></span>
-
-<%= pagination_links @conn, @page, pagination_params(@conn.params) %>
-
+<section class="checkout">
+  <div class="checkout-options">
+    <%= link "New checkout", to: Routes.checkout_path(@conn, :new), class: "btn__new-checkout" %>
+    <%= form_for @conn, Routes.checkout_path(@conn, :index), [as: "search", method: :get], fn f -> %>
+      <%= select f, :search_by, ["id": "id", "renewals_remaining": "renewals_remaining", "checkout_date": "checkout_date", "checkin_date": "checkin_date",
+      "due_date": "due_date", "card_id": "card_id", "copy_id": "copy_id", "isbn_id": "isbn_id", "library_id": "library_id"], selected: "id" %>
+        <label>
+          <%= text_input f, :query %>
+        </label>
+      <%= submit "Submit" %>
+    <% end %>
+  </div>
+  <div class="checkout-table">
+    <div class="table">
+      <div class="table-caption">
+        Listing checkout
+      </div>
+      <div class="table-head">
+        <h2 class="table-head__item">
+          Id
+        </h2>
+        <h2 class="table-head__item">
+          Renewals Remaining
+        </h2>
+        <h2 class="table-head__item">
+          Checkout Date
+        </h2>
+        <h2 class="table-head__item">
+          Checkin Date
+        </h2>
+        <h2 class="table-head__item">
+          Due Date
+        </h2>
+        <div class="table-head__item">
+          Card
+        </div>
+        <div class="table-head__item">
+          Copy Id
+        </div>
+        <div class="table-head__item">
+          ISBN
+        </div>
+        <div class="table-head__item">
+          Library
+        </div>
+      </div>
+      <div class="table-body">
+        <%= for checkout <- @checkouts do %>
+        <div class="table-body__row">
+          <div class="table-body__row-column">
+            <p><%= checkout.id %></p>
+          </div>
+          <div class="table-body__row-column">
+            <p><%= checkout.renewals_remaining %></p>
+          </div>
+          <div class="table-body__row-column">
+            <p><%= checkout.checkout_date %></p>
+          </div>
+          <div class="table-body__row-column">
+            <p><%= checkout.checkin_date %></p>
+          </div>
+          <div class="table-body__row-column">
+            <p><%= checkout.due_date %></p>
+          </div>
+          <div class="table-body__row-column">
+            <p><%= checkout.card_id %></p>
+          </div>
+          <div class="table-body__row-column">
+            <p><%= checkout.copy_id %></p>
+          </div>
+          <div class="table-body__row-column">
+            <p><%= checkout.isbn_id %></p>
+          </div>
+          <div class="table-body__row-column">
+            <p><%= checkout.library_id %></p>
+          </div>
+          <div class="table-body__row-column table-body__row-buttons">
+            <%= link "Show", to: Routes.checkout_path(@conn, :show, checkout), class: "btn__show" %>
+            <%= link "Edit", to: Routes.checkout_path(@conn, :edit, checkout), class: "btn__edit" %>
+            <%= link "Check In", to: Routes.checkout_path(@conn, :update, checkout), method: :put, class: "btn__update" %>
+            <%= link "Check Out", to: Routes.checkout_path(@conn, :process, checkout), method: :put, class: "btn__process" %>
+            <%= link "Delete", to: Routes.checkout_path(@conn, :delete, checkout), method: :delete, data: [confirm: "Are you sure?"], class: "btn__delete" %>
+          </div>
+          <hr class="table-body__row-divider">
+        </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="table-pagination">
+      <%= pagination_links @conn, @page, pagination_params(@conn.params) %>
+    </div>
+  </div>
+</section>

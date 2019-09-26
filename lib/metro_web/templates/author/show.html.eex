@@ -18,7 +18,7 @@
             </div>
         </div>
     </div>
-    <div class="author-show__works__table">
+    <div class="author-show__works__table book-table">
         <div class="table">
             <div class="table-caption">
                 Some of <%= @author.last_name %>'s works

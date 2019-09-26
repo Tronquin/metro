@@ -13,6 +13,7 @@
 @import "./components/grid";
 @import "./components/typography";
 @import "./components/tables";
+@import "./components/inputs";
 
 //Templates
 @import "./templates/page/index";
@@ -24,6 +25,14 @@
 @import "./templates/coherence/registration/new";
 @import "./templates/coherence/session/new";
 @import "./templates/shared/notifications";
+@import "./templates/work/index";
+@import "./templates/transit/index";
+@import "./templates/copy/index";
+@import "./templates/waitlist/index";
+@import "./templates/checkout/index";
+@import "./templates/user/show";
+@import "./templates/user/edit";
+@import "./templates/user/index";
 
 //Layout
 @import "./layout/navbar";

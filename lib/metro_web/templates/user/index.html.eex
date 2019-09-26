@@ -1,33 +1,59 @@
-<h2>Listing Users</h2>
-
-<table class="table">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Email</th>
-      <th>Fines</th>
-      <th>Is_librarian?</th>
-      <th>Num of books out</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-<%= for user <- @users do %>
-    <tr>
-      <td><%= user.name %></td>
-      <td><%= user.email %></td>
-      <td><%= user.fines %></td>
-      <td><%= user.is_librarian? %></td>
-      <td><%= user.num_books_out %></td>
-
-      <td class="text-right">
-        <span><%= link "Show", to: Routes.user_path(@conn, :show, user), class: "btn btn-default btn-xs" %></span>
-        <span><%= link "Edit", to: Routes.user_path(@conn, :edit, user), class: "btn btn-default btn-xs" %></span>
-        <span><%= link "Delete", to: Routes.user_path(@conn, :delete, user), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
-      </td>
-    </tr>
-<% end %>
-  </tbody>
-</table>
-
-<span><%= link "New User", to: Routes.user_path(@conn, :new) %></span>
+<section class="user-list">
+  <div class="user-list__options">
+    <%= link "New User", to: Routes.user_path(@conn, :new), class: "btn__new-user" %>
+  </div>
+  <div class="user-list-table">
+    <div class="table">
+      <div class="table-caption">
+        Listing User
+      </div>
+      <div class="table-head">
+        <h2 class="table-head__item">
+          Name
+        </h2>
+        <h2 class="table-head__item">
+          Email
+        </h2>
+        <h2 class="table-head__item">
+          Fines
+        </h2>
+        <h2 class="table-head__item">
+          Is Librarian?
+        </h2>
+        <h2 class="table-head__item">
+          Num of Books Out
+        </h2>
+        <div class="table-head__item">
+          Controls
+        </div>
+      </div>
+      <div class="table-body">
+        <%= for user <- @users do %>
+        <div class="table-body__row">
+          <div class="table-body__row-column">
+            <p><%= user.name %></p>
+          </div>
+          <div class="table-body__row-column">
+            <p><%= user.email %></p>
+          </div>
+          <div class="table-body__row-column">
+            <p><%= user.fines %></p>
+          </div>
+          <div class="table-body__row-column">
+            <p><%= user.is_librarian? %></p>
+          </div>
+          <div class="table-body__row-column">
+            <p><%= user.num_books_out %></p>
+          </div>
+          <div class="table-body__row-column table-body__row-buttons">
+            <%= link "Show", to: Routes.user_path(@conn, :show, user), class: "btn__show" %>
+            <%= link "Edit", to: Routes.user_path(@conn, :edit, user), class: "btn__edit" %>
+            <%= link "Delete", to: Routes.user_path(@conn, :delete, user), method: :delete, data: [confirm: "Are you sure?"], class: "btn__delete" %>
+          </div>
+          <hr class="table-body__row-divider">
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</section>

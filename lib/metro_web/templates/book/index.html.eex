@@ -43,8 +43,8 @@
             </div>
         </ul>
     </div>
-    <div class="books-list-table">
-        <div class="table">
+    <div class="books-list-table book-table">
+      <div class="table">
         <div class="table-caption">
           Books
         </div>
@@ -97,7 +97,7 @@
         <div class="table-pagination">
           <%= pagination_links @conn, @page, pagination_params(@conn.params) %>
         </div>
-    </div>
+      </div>
 <% end %>
 </section>
 
