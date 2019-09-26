@@ -6,8 +6,7 @@ defmodule MetroWeb.Endpoint do
   socket(
     "/socket",
     MetroWeb.UserSocket,
-    websocket: true,
-    # or list of options
+    websocket: [timeout: 45_000],
     longpoll: false
   )
 
