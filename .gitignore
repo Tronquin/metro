@@ -29,10 +29,5 @@ npm-debug.log
 .idea
 .env
 .DS_Store
-<<<<<<< HEAD
-node_modules/
-.elixir_ls/
-=======
 .elixir_ls
 _build
->>>>>>> Frontend
