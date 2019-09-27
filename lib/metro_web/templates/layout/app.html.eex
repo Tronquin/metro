@@ -52,16 +52,16 @@
     <script> window.userId =  "<%= @conn.assigns[:user_id] %>" </script>
     <script src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
     <script>
-      const menuToggle = document.querySelector('.menu-toggle');
-      const hamburger = document.querySelector('.menu-toggle__hamburger');
+      const menuToggle = document.querySelector('.navbar__toggle');
+      const hamburger = document.querySelector('.navbar__toggle-hamburger');
       const header = document.querySelector('header');
-      const logo = document.querySelector('.logo-container');
-      const nav = document.querySelector('.nav');
+      const logo = document.querySelector('.navbar__logo');
+      const nav = document.querySelector('.navbar__elements');
       menuToggle.onclick = () => {
-        nav.classList.toggle('nav__open');       
-        hamburger.classList.toggle('open');
-        header.classList.toggle('navigation-bar-open');
-        logo.classList.toggle('logo-open');
+        nav.classList.toggle('navbar__elements__open');       
+        hamburger.classList.toggle('navbar__toggle__open');
+        header.classList.toggle('navbar__open');
+        logo.classList.toggle('navbar__logo__open');
       }
 
       const dropdownHead = document.querySelector('.nav__links-item__dropdown-toggle');

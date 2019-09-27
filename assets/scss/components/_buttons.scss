@@ -1,5 +1,6 @@
 @import "../base/fonts";
 @import "../base/variables";
+@import "../base/queries";
 
 .btn {
   &__edit,
@@ -114,5 +115,14 @@
     color: $black;
     background-color: $pink;
     font-family: "ibm_plex_bold", sans-serif;
+    text-transform: uppercase;
+  }
+}
+
+@include mq-tablet {
+  .btn {
+    &__more-books {
+      margin: auto;
+    }
   }
 }

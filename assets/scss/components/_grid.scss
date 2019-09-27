@@ -10,7 +10,10 @@
   padding-left: 10px;
 }
 
-@include wrapper-unset {
+@include mq-tablet {
+  main {
+    padding-top: 6.5em;
+  }
   .wrapper {
     margin: unset;
     max-width: unset;
