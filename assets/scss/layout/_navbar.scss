@@ -57,7 +57,8 @@
     &-list {
       display: flex;
       &-item {
-        margin: 0 1em;
+        margin: auto 1em;
+        cursor: pointer;
         &:last-child {
           margin-right: 0;
         }
@@ -97,10 +98,28 @@
           }
         }
         &__dropdown {
+          position: relative;
           &-toggle {
+            font-family: "ibm_plex_bold" !important;
+            cursor: pointer;
           }
           &-menu {
+            display: none;
+            position: absolute;
+            z-index: 10;
+            background: $light-grey;
+            padding: 0.5em 1em;
+            right: 0;
+            margin-top: 0.5em;
+            text-align: right;
+            border-bottom-left-radius: 5px;
+            border-bottom-right-radius: 5px;
+            border-top-left-radius: 5px;
+            &__open {
+              display: block;
+            }
             &-item {
+              margin: 1em 0;
             }
           }
         }
@@ -181,7 +200,7 @@
     }
     &__elements {
       position: absolute;
-      background: pink;
+      background: $pink;
       width: 400px;
       right: -400px;
       z-index: 10;

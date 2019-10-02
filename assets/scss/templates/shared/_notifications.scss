@@ -4,67 +4,77 @@
 @import "../../base/fonts";
 
 .notifications {
+  cursor: pointer;
+  position: relative;
   &-head {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-flow: column;
     img {
       width: 2em;
     }
-    p {
-      top: 0;
-      right: 0;
+    &__count {
+      font-family: "ibm_plex_bold";
+      background-color: #d97398;
+      position: absolute;
+      top: -22px;
+      right: -7px;
+      color: #0d0d0d;
+      padding: 0.1em 0.2em;
+      border-radius: 5px;
+      &__hidden {
+        visibility: hidden;
+      }
     }
   }
   &-dropdown {
-    background-color: $light-grey;
     display: none;
-    justify-content: center;
-    flex-flow: column wrap;
-    padding: 0.5em;
-    border-radius: 5px;
-    top: 0;
-    right: 0;
-    position: relative;
-    margin-top: 0.5em;
+    position: absolute;
+    z-index: 10;
+    background: $light-grey;
+    padding: 0.5em 1em;
+    right: 0px;
+    text-align: right;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-top-left-radius: 5px;
+    &__open {
+      display: block;
+    }
     &__list {
+      display: flex;
+      align-items: center;
+      flex-flow: column wrap;
       &-item {
+        margin: 1em 0;
         a {
           font-family: "ibm_plex_light";
           color: $black;
+          transition: color ease 0.2s;
+          &:hover {
+            color: $pink;
+          }
         }
-      }
-      .unread {
-      }
-
-      .seen {
       }
     }
   }
 }
 
-@include mq-mobile {
+@include mq-tablet {
   .notifications {
     &-head {
-      display: block;
-      cursor: pointer;
-      p {
-        font-family: "ibm_plex_bold";
-        background-color: $pink;
-        position: absolute;
-        top: -5px;
-        right: 8px;
-        color: $black;
-        padding: 0.1em 0.2em;
-        border-radius: 5px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-flow: column;
+      &__count {
+        background-color: $grey;
+        color: $pink;
+        margin: 1em 0;
       }
     }
-    &-dropdown {
-      right: 0;
-      top: 30px;
-      margin-top: 0;
-      position: absolute;
-    }
+  }
+  &-dropdown {
+    left: 0;
+    border-top-right-radius: 5px;
+    border-top-right-radius: unset;
+    background: $grey;
   }
 }
