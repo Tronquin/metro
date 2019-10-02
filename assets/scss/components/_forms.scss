@@ -7,6 +7,7 @@
     background: $light-grey;
     border-radius: 5px;
     padding: 1em;
+    margin: 1em;
     &-genres {
       .form-group {
         .checkbox-grid {
@@ -40,20 +41,6 @@
           }
         }
       }
-    }
-  }
-
-  span {
-    a {
-      background: $yellow;
-      border-radius: 5px;
-      padding: 0.5em 2em;
-      border: none;
-      outline: none;
-      text-transform: uppercase;
-      font-family: "ibm_plex_bold";
-      text-align: center;
-      color: $black;
     }
   }
 }

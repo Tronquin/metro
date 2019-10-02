@@ -210,10 +210,12 @@
   .books-list {
     font-size: 10px;
     &__filters {
+      height: 100%;
+      position: relative;
       &__list {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+        grid-template-rows: 30px 30px 50px 1fr 30px;
         grid-template-areas:
           "header ."
           "search ."
