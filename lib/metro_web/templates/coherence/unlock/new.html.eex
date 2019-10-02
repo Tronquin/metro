@@ -15,7 +15,7 @@
   </div>
 
   <div class="form-group">
-    <%= submit dgettext("coherence", "Send Instructions"), class: "btn btn-primary" %>
+    <%= submit dgettext("coherence", "Send Instructions"), class: "btn__submit" %>
     <%= link dgettext("coherence", "Cancel"), to: Coherence.Config.logged_out_url("/"), class: "btn" %>
   </div>
 

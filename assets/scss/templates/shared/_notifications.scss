@@ -14,7 +14,7 @@
       font-family: "ibm_plex_bold";
       background-color: #d97398;
       position: absolute;
-      top: -22px;
+      top: -6px;
       right: -7px;
       color: #0d0d0d;
       padding: 0.1em 0.2em;
@@ -65,6 +65,8 @@
       align-items: center;
       flex-flow: column;
       &__count {
+        top: -22px;
+        right: -7px;
         background-color: $grey;
         color: $pink;
         margin: 1em 0;

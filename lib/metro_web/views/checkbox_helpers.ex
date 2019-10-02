@@ -24,16 +24,16 @@ defmodule MetroWeb.CheckboxHelper do
               checked: Enum.member?(selected_as_strings, "#{key}")
             )
 
-            [checkbox, val]
+          [checkbox, val]
 
-#          content_tag(:label) do
-#            [checkbox, val]
-#          end
+          #          content_tag(:label) do
+          #            [checkbox, val]
+          #          end
         end
       end
 
     content_tag(:div, class: "form-group check_boxes optional") do
-      [label(form, field), boxes]
+      [boxes]
     end
   end
 

@@ -1,0 +1,59 @@
+@import "../base/fonts";
+@import "../base/variables";
+@import "../base/queries";
+
+.library {
+  &__form {
+    background: $light-grey;
+    border-radius: 5px;
+    padding: 1em;
+    &-genres {
+      .form-group {
+        .checkbox-grid {
+          &::before {
+            content: "Genres";
+            font-family: "ibm_plex_bold";
+            color: $black;
+            margin-bottom: 0.5em;
+          }
+          .check_boxes {
+            display: flex;
+            justify-content: center;
+            margin-top: 1.5em;
+            flex-wrap: wrap;
+            li {
+              display: flex;
+              margin: 1em;
+              justify-content: center;
+              align-items: center;
+              input {
+                margin-top: 0 !important;
+                margin-left: 0.5em;
+              }
+              &:first-child {
+                margin-left: 0;
+              }
+              &:last-child {
+                margin-right: 0;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  span {
+    a {
+      background: $yellow;
+      border-radius: 5px;
+      padding: 0.5em 2em;
+      border: none;
+      outline: none;
+      text-transform: uppercase;
+      font-family: "ibm_plex_bold";
+      text-align: center;
+      color: $black;
+    }
+  }
+}

@@ -225,6 +225,9 @@
             margin-bottom: 0;
           }
           a {
+            &:hover {
+              color: $grey;
+            }
           }
           &__search-mobile {
             display: flex;
