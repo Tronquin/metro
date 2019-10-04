@@ -145,6 +145,17 @@ $userList: (
   "gridAreas": $userListGridAreas
 );
 
+$librariesTableColumns: ("image", "branch", "address", "hours", "controls");
+$librariesTableColumnWidth: ("233px", "150px", "150px", "150px", "150px");
+$librariesTableColumnCount: length($librariesTableColumns);
+$librariesGridAreas: "image branch address hours controls";
+$libraries: (
+  "columns": $librariesTableColumns,
+  "columnWidth": $librariesTableColumnWidth,
+  "columnCount": $librariesTableColumnCount,
+  "gridAreas": $librariesGridAreas
+);
+
 $tables: (
   "book": $book,
   "work": $work,
@@ -157,7 +168,8 @@ $tables: (
   "profile-transit": $profileTransit,
   "profile-waitlist": $profileWaitlist,
   "profile-prev-checkout": $profilePrevCheckout,
-  "user-list": $userList
+  "user-list": $userList,
+  "libraries": $libraries,
 );
 $tableList: (
   "book",
@@ -171,7 +183,8 @@ $tableList: (
   "profile-transit",
   "profile-waitlist",
   "profile-prev-checkout",
-  "user-list"
+  "user-list",
+  "libraries"
 );
 
 /**
@@ -271,6 +284,11 @@ $tableList: (
     color: $pink;
     font-size: 1.5em;
     margin: 1em 0;
+    padding: 0.5em 0;
+    a {
+      margin-left: 1em;
+      font-size: 0.5em;
+    }
   }
   &-head {
     display: grid;

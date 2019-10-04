@@ -38,7 +38,6 @@
     border-top-left-radius: 5px;
     &__open {
       display: block;
-      bottom: 45px;
     }
     &__list {
       display: flex;
@@ -81,5 +80,8 @@
     border-top-right-radius: 5px;
     border-top-right-radius: unset;
     background: $grey;
+    &__open {
+      bottom: 45px;
+    }
   }
 }

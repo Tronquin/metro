@@ -17,7 +17,8 @@
     color: $black;
   }
 
-  &__back {
+  &__back,
+   &__see-other {
     background: $pink;
     border-radius: 5px;
     padding: 0.5em 2em;
@@ -63,7 +64,8 @@
   &__new-copy,
   &__new-waitlist,
   &__new-checkout,
-  &__new-user {
+  &__new-user,
+  &__new-library {
     text-transform: uppercase;
     font-family: "ibm_plex_bold";
     text-align: center;
