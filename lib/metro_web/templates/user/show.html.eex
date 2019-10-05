@@ -1,25 +1,28 @@
 <section class="profile">
   <div class="profile-user">
     <div class="profile-user__info">
-      <h1>Show User</h1>
-      <ul class="profile-user__info__list">
-        <li class="profile-user__info__list-item">
+      <h1 class="profile-header">Show User</h1>
+      <ul class="profile-user__info__list profile-info">
+        <li class="profile-user__info__list-item name">
           <h3>Name</h3>
           <p><%= @user.name %></p>
         </li>
-        <li class="profile-user__info__list-item">
+        <li class="profile-user__info__list-item email">
           <h3>Email</h3>
           <p><%= @user.email %></p>
         </li>
-        <li class="profile-user__info__list-item">
+        <li class="profile-user__info__list-item fines">
           <h3>Fines</h3>
           <p><%= @user.fines %></p>
         </li>
-        <li class="profile-user__info__list-item">
+        <li class="profile-user__info__list-item librarian">
           <h3>Is Librarian?</h3>
           <p><%= @user.is_librarian? %></p>
         </li>
       </ul>
+      <div class="profile-user__info-card card">
+        <div id="library-card"></div>
+      </div>
     </div>
     <%= if @user.card == nil do %>
       <div class="profile-user__card">
@@ -226,3 +229,93 @@
     </div>
   </div>
 </section>
+
+<script src="https://unpkg.com/konva@4.0.13/konva.min.js"></script>
+<script>
+  const stage = new Konva.Stage({
+    container: 'library-card',
+    width: 502,
+    height: 202,
+  });
+
+  const layer = new Konva.Layer();
+
+  const rect = new Konva.Rect({
+    x: 1,
+    y: 1,
+    width: 500,
+    height: 200,
+    stroke: 'black',
+    strokeWidth: 3,
+    fill: 'white',
+    shadowColor: 'black',
+    shadowBlur: 10,
+    shadowOffset: [10, 10],
+    shadowOpacity: 0.2,
+    cornerRadius: 10
+  });
+
+
+  const headerText = new Konva.Text({
+    x: 120,
+    y: 30,
+    text: 'Phoenix Library Card',
+    fontSize: 30,
+    fontFamily: 'vollkorn_bold',
+    fill: '#0d0d0d'
+  });
+
+  const nameText = new Konva.Text({
+    x: 30,
+    y: 60,
+    text:
+    "Name: <%= @user.name %>",
+    fontSize: 18,
+    fontFamily: 'ibm_plex_bold',
+    fill: '#d97398',
+    width: 300,
+    padding: 20,
+    align: 'center'
+  });
+
+  const cardCodeText = new Konva.Text({
+    x: 73,
+    y: 80,
+    text:
+    "Number: 38049238402",
+    fontSize: 18,
+    fontFamily: 'ibm_plex_bold',
+    fill: '#d97398',
+    width: 300,
+    padding: 20,
+    align: 'center'
+  });
+
+  Konva.Image.fromURL('/images/svg/logo.svg', function(logoNode) {
+    logoNode.setAttrs({
+    x: 30,
+    y: 60,
+    scaleX: 0.5,
+    scaleY: 0.5
+    });
+    layer.add(logoNode);
+    layer.batchDraw();
+  });
+
+  Konva.Image.fromURL('/images/png/barcode.png', function(barcodeNode) {
+    barcodeNode.setAttrs({
+    x: 116,
+    y: 130,
+    scaleX: 0.15,
+    scaleY: 0.12
+    });
+    layer.add(barcodeNode);
+    layer.batchDraw();
+  });
+
+  layer.add(rect);
+  layer.add(headerText);
+  layer.add(nameText);
+  layer.add(cardCodeText);
+  stage.add(layer);
+</script>

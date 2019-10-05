@@ -9,13 +9,28 @@
   margin-bottom: 1em;
   &-user {
     &__info {
-      display: flex;
-      flex-flow: column wrap;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      grid-template-rows: 50px 1fr 50px;
+      grid-template-areas: 'header header header header' 'card . . .' 'info info info .';
+      grid-gap: 1em;
+
+      .profile-header {
+        grid-area: header;
+      }
+
+      .card {
+        grid-area: card;
+      }
+
+      .profile-info {
+        grid-area: info;
+      }
+
       h1 {
         font-family: "vollkorn_bold";
         color: $pink;
         font-size: 2.5em;
-        margin-bottom: 0.5em;
       }
       &__list {
         display: flex;
@@ -35,9 +50,6 @@
         }
       }
     }
-    &__card {
-      margin: 1em 0;
-    }
     &__options {
       margin: 2.5em 0;
       a {
@@ -48,6 +60,29 @@
     }
     &__data {
       margin: 1em 0;
+    }
+  }
+}
+
+@include mq-tablet {
+  .profile {
+    &-user {
+      &__info {
+        .card {
+          display: none;
+        }
+        display: flex;
+        justify-content: center;
+        flex-flow: column wrap;
+        &__list {
+          display: flex;
+          justify-content: center;
+          flex-flow: column wrap;
+          &-item {
+            margin: 1em 0;
+          }
+        }
+      }
     }
   }
 }
