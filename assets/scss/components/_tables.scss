@@ -101,10 +101,10 @@ $profilePickup: (
   "gridAreas": $profilePickupGridAreas
 );
 
-$profileTransitTableColumns: ("estimatedArrival", "library", "isbn");
-$profileTransitTableColumnWidth: ("150px", "150px", "150px");
+$profileTransitTableColumns: ("image", "estimatedArrival", "library", "isbn");
+$profileTransitTableColumnWidth: ("150px", "150px", "150px", "150px");
 $profileTransitTableColumnCount: length($profileTransitTableColumns);
-$profileTransitGridAreas: "estimatedArrival library isbn";
+$profileTransitGridAreas: "image estimatedArrival library isbn";
 $profileTransit: (
   "columns": $profileTransitTableColumns,
   "columnWidth": $profileTransitTableColumnWidth,
@@ -321,7 +321,6 @@ $tableList: (
         font-size: 0.9em;
         img {
           border-radius: 5px;
-          width: 100%;
         }
         p {
           font-family: "ibm_plex_light";
@@ -399,5 +398,11 @@ $tableList: (
 @include mq-tablet {
   body {
     overflow: scroll;
+  }
+
+  .table {
+    img {
+      width: 100%;
+    }
   }
 }

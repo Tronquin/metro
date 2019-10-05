@@ -122,6 +122,9 @@
           </div>
           <div class="table-head">
             <h2 class="table-head__item">
+              Image
+            </h2>
+            <h2 class="table-head__item">
               Estimated Arrival
             </h2>
             <h2 class="table-head__item">
@@ -140,7 +143,7 @@
                 height="180" width="120" </img> 
               </div>
               <div class="table-body__row-column">
-                <p><%= checkout.estimated_arrival %></p>
+                <p><%= checkout.transit.estimated_arrival %></p>
               </div>
               <div class="table-body__row-column">
                 <p><%= checkout.library_id %></p>
